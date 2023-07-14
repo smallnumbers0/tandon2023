@@ -1,55 +1,172 @@
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage{soul}
+\usepackage[T1]{fontenc}
+\usepackage{titling}
+
+\setlength{\droptitle}{-11em} 
+\title{\textbf{NYU Computer Science Bridge HW1}\\
+Summer 2023 Name: Jacky Choi}
 
 
+\date{}
 \begin{document}
+\setul{}{2pt}
 
-\noindent NYU Computer Science Bridge | Summer 2023\\
-Name: Jacky Choi\\
+\maketitle
 
-\noindent \textbf{Question 1:}\\
-1. $ 10011011_{2} = (1*2^7) + 0 + 0 + (1*2^4) + (1*2^3) + 0 +(1*2^1) + (1*2^0) \newline = 128 + 16 + 8 + 2 + 1 \newline = 155 $
-\pagebreak
 
-\noindent Question 2:\\
+\noindent \textbf{\ul{Question 1:}} \\
+\\
 
-\pagebreak
 
-\noindent Question 3:\\
-
-\pagebreak
-
-\noindent Question 4:\\
-
-\pagebreak
-
-\noindent Question 5:\\
-
-\pagebreak
-
-\noindent Question 6:\\
-
-\pagebreak
-
-\noindent Question 7:\\
-
-\pagebreak
-
-\noindent Question 8:\\
-
-\pagebreak
-
-\noindent Question 9:\\
-
-\pagebreak
-
-\noindent Question 10:\\
+\noindent 
+A: \\
+1. $ 10011011_{2} = (1*2^7) + 0 + 0 + (1*2^4) + (1*2^3) + 0 +(1*2^1) + (1*2^0)  = 128 + 16 + 8 + 2 + 1 = 155_{10} $\\
+\\
+2. $ 456_{7} = (4*7^2) + (5*7^1) + (6*7^0) = 237_{10} $\\
+\\
+3. $ 38A_{16} = (3*16^2) + (8*16^1) + (10*16^0) = 906_{10} $ \\
+\\
+4. $ 2214_{5} = (2*5^3) + (2*5^2) + (1*5^1) + (4*5^0) = 309_{10}$ \\
+\\
+B: \\
+\textbf{256 128 64 32 16 8 4 2 1} 
+\\
+1. $ 69_{10} =  64 + 4 + 1 = 0100 0101_{2} $\\
+\\
+2. $ 485_{10} = 256 + 128 + 64 + 32 + 4 + 1 \\= 111100101_{2} $\\
+\\
+3. $ 6D1A_{16} = (
+6 = 0+ 4 + 2 + 0 = 0110_{2} | D =  8 + 4 + 0 + 1 = 1101_{2}\\ 1 = 0 + 0 + 0 +1 = 0001_{2} | A = 8 + 0 + 2 + 0 = 1010_{2})
+= 0110 1101 0001 1010_{2} $\\
+\\
+C:\\
+1. $ 1101011_{2} = 0110 1011 = 6 + 11 = 6B $ \\
+\\
+\textbf{Decimal:Hexadecimal Pairs 0:0 1:1 2:2 3:3 4:4 5:5 6:6 7:7 8:8 9:9 10:A 11:B 12:C 13:D 14:E 15:F}
+\\
+\\
+2. $ 895_{10} =  895 / 16 = 55 R 15 = F \\55 / 16 = 3 R 7 \\3 / 16 = 0 R 3 
+ = 37F_{16} $ 
 
 \pagebreak
 
-\noindent Question 11:\\
+\noindent \textbf{\ul{Question 2:}} \\
+\\
+Solve the following, do all calculation in the given base. Show your work.\\
+\\
+1. $ 7566_{8} + 4515_{8} = \\
+6_{8} + 5_{8} = 3_{8} \;carry 1\\ 
+7_{8} + 1_{8} = 0_{8} \;carry 1\\
+6_{8} + 5_{8} = 3_{8} \;carry 1\\
+8_{8} + 4_{8} = 4_{8} \;carry 1\\
+1_{8} + 0_{8} = 1_{8}\\
+=14303_{8} $\\\\
+2. $ 10110011_{2} + 1101_{2} = \\1_{2} + 1_{2} = 0 \; carry 1 \\
+2_{2} + 0_{2} = 0 \; carry 1 \\
+1_{2} + 1_{2} = 0 \; carry 1 \\
+1_{2} + 1_{2} = 0 \; carry 1 \\
+2_{2} + 0_{2} = 0 \; carry 1 \\
+2_{2} + 0_{2} = 0 \; carry 1 \\
+1_{2} + 0_{2} = 1 \\
+1_{2} + 0_{2} = 1 \\
+=11000000_{2}$\\\\
+\\
+3. $ 7A66_{16} + 45C5_{16} = \\
+6_{16} + 5_{16} = 11_{16} = B \\
+6_{16} + 12_{16} = 2_{16} = 2 \;carry 1\\
+11_{16} + 5_{16} = 0_{16} = 0 \\
+8_{16} + 4_{16} = 12_{16} = C \\
+= C02B_{16} $\\
+\\
+4. $ 3022_{5} - 2433_{5} = \\
+7_{5} - 3_{5} = 4_{5} | \;(2 - 1 = 1)\\
+6_{5} - 3_{5} = 3_{5} |\;(5 - 1 = 4)\\
+4_{5} - 4_{5} = 0_{5} |\;(3 - 1 = 2)\\
+2_{5} - 2_{5} = 0_{5} \\
+= 34_{5} $ \\
+\\
 
 \pagebreak
 
-\noindent Question 12:\\
+\noindent \textbf{\ul{Question 3:}} \\
+\\
+\textbf{256 128 64 32 16 8 4 2 1} \\
+A. Convert the following numbers to their 8-bits two's complement representation. Show your work. \\\\
+1. $124_{10} = 0 + 64 + 32 + 16 + 8 + 4 + 0 + 0 = 01111100_{8}$\\ \\  
+2. $-124_{10} = 10000011_{8} + 00000001_{8} = 10000100_{8}$ (flipped bits 0 - 1 and added 1)\\ \\
+3. $109_{10} = $\\ \\
+4. $-79_{10} = $\\ \\
+B. Convert the following numbers {represented as 8-bit two's complement) to their decimal representation. Show your work.\\\\
+1. $00011110_{8 bit 2's comp} = $\\\\
+2. $11100110_{8 bit 2's comp} = $\\\\
+3. $00101101_{8 bit 2's comp} = $\\\\
+4. $10011110_{8 bit 2's comp} = $\\\\
 
+\pagebreak
+
+\noindent \textbf{\ul{Question 4:}} \\
+\\
+Solve the following question from the Discrete Math Zybook: \\\\
+1. Exercise 1.2.4, sections b, c \\\\
+2. Exercise 1.3.4, sections b, d \\\\
+\pagebreak
+
+\noindent \textbf{\ul{Question 5:}} \\
+\\
+Solve the following question from the Discrete Math Zybook:\\\\
+1. Exercise 1.2.7, sections b, c \\\\
+2. Exercise 1.3.7, sections b - e \\\\
+3. Exercise 1.3.9, sections c, d \\\\
+\pagebreak
+
+\noindent \textbf{\ul{Question 6:}} \\
+\\
+Solve the following question from the Discrete Math Zybook:\\\\
+1. Exercise 1.3.6, sections b - d \\\\
+2. Exercise 1.3.10, sections c - f \\\\
+\pagebreak
+
+\noindent \textbf{\ul{Question 7:}} \\
+\\
+Solve the following question from the Discrete Math Zybook:\\\\
+1. Exercise 1.4.5, sections b - d \\\\
+
+\pagebreak
+
+\noindent \textbf{\ul{Question 8:}} \\
+\\
+Solve the following question from the Discrete Math Zybook:\\\\
+1. Exercise 1.5.2, sections c, f, i \\\\
+2. Exercise 1.5.3, sections c, d \\\\
+\pagebreak
+
+\noindent \textbf{\ul{Question 9:}} \\
+\\
+Solve the following question from the Discrete Math Zybook:\\\\
+1. Exercise 1.6.3, sections c, d \\\\
+2. Exercise 1.7.4, sections b - d \\\\
+\pagebreak
+
+\noindent \textbf{\ul{Question 10:}} \\
+\\
+Solve the following question from the Discrete Math Zybook:\\\\
+1. Exercise 1.7.9, sections c - i \\\\
+2. Exercise 1.9.2, sections b - i \\\\
+\pagebreak
+
+\noindent \textbf{\ul{Question 11:}} \\
+\\
+Solve the following question from the Discrete Math Zybook:\\\\
+1. Exercise 1.10.4, sections c - g \\\\
+2. Exercise 1.10.7, sections c - f \\\\
+3. Exercise 1.10.10, sections c - f \\\\
+
+\pagebreak
+
+\noindent \textbf{\ul{Question 12:}} \\
+\\
+Solve the following question from the Discrete Math Zybook:\\\\
+1. Exercise 1.8.2, sections b - e \\\\
+2. Exercise 1.9.4, sections c - e \\\\
 \end{document}
