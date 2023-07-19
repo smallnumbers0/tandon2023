@@ -12,7 +12,9 @@ The total is 4 dollars and 37 cents
 #include <iostream>
 using namespace std;
 
-int main() {
+int main() 
+{
+
     int quarters, dimes, nickels, pennies, dollars, cents, total;
     int const QUARTER_VALUE = 25, DIME_VALUE = 10, NICKEL_VALUE = 5, DOLLAR_VALUE = 100;
 
