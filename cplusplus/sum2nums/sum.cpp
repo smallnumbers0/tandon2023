@@ -4,16 +4,17 @@
 using namespace std;
 
 int main() {
-    int num1;
-    int num2;
-    int sum;
+    int num1; //holds first input
+    int num2; //holds second input
+    int sum; //holds the sum
 
     cout<<"Please enter two numbers seperated by a space: "<<endl;
-    cin>>num1>>num2;
+    cin>>num1;
+    cin>>num2;
 
     sum = num1 + num2;
 
     cout<<num1<<" + "<<num2<<" = "<<sum<<endl;
-    
+
     return 0;
 }

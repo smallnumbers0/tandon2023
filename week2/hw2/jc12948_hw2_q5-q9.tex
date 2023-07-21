@@ -1,5 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amsthm,amssymb}
+\renewcommand{\qedsymbol}{$\blacksquare$}
 \usepackage{soul}
 \usepackage[T1]{fontenc}
 \usepackage{titling}
@@ -15,10 +16,8 @@ Summer 2023 Name: Jacky Choi}
 
 \maketitle
 
-\noindent Question 5:\\
-a) Solve the following questions from the Discrete Math zyBook:\\
-1. Exercise 1.12.2, sections b, e\\\\
-b. 
+\noindent \textbf{Question 5:}\\\\
+Exercise 1.12.2 B 
 \begin{center}
   \begin{tabular}{l}
     $p \rightarrow (q \wedge r)$\\
@@ -32,13 +31,15 @@ b.
 2.& $\neg q \vee \neg r$ & Addition, 1\\
 3.& $\neg (q \wedge r)$ & De Morgan, 2\\
 4.& $ p \rightarrow (q \wedge r) $ & Hypothesis\\
-5.& $\neg p$& Modus tollens, 3 4\\
+5.& $\neg p$& Modus tollens, 3 4\\ 
 
   \end{tabular}
 \end{center}
 \end{center}
+\qed 
 
-\noindent e. 
+
+\noindent Exercise 1.12.2 E
 \begin{center}
   \begin{tabular}{l}
     $p \vee q$\\
@@ -57,8 +58,9 @@ b.
   \end{tabular}
 \end{center}
 \end{center}
-\pagebreak
-\noindent Exercise 1.12.3, section c\\
+\qed
+\pagebreak\\
+\noindent Exercise 1.12.3 C\\
 
 \begin{center}
 
@@ -84,8 +86,9 @@ b.
   \end{center}
   
 \end{center}
+\qed
 
-\noindent Exercise 1.12.5, section c
+\noindent Exercise 1.12.5 C
 \begin{center}
   \begin{tabular}{l}
    \text{I will buy a new car and a new house only if I get a job.}\\
@@ -108,9 +111,10 @@ b.
   \end{tabular}\\
 \end{center}
 
-\noindent Argument is not valid. When both hypotheses are true the conclusion is false: c = True, h and j = False \\
+\noindent Argument is not valid. When both hypotheses are true the conclusion is false: c = True, h and j = False \\ \qed
 
-\noindent Exercise 1.12.5, section d
+\newpage
+\noindent Exercise 1.12.5 D
 \begin{center}
   \begin{tabular}{l}
    \text{I will buy a new car and a new house only if I get a job.}\\
@@ -157,9 +161,7 @@ b.
 \end{tabular}
 \end{center}
 
-
-\noindent b)  \\
-Exercise 1.13.3, section b\\
+\noindent Exercise 1.13.3 B\\
 
 \begin{center}
   \begin{tabular}{l}
@@ -182,9 +184,10 @@ b & F & F \\ \hline
 \end{center}
 
 \noindent When x = a$\exists x (P(x) \vee Q(x))$ is true and when x = b $\exists x \neg Q(b)$ is also true, but $\exists xP(x)$is false proving it is not valid\\
+\qed 
+\newpage 
 
-
-\noindent Exercise 1.13.5, section d
+\noindent Exercise 1.13.5 D
 \begin{center}
   \begin{tabular}{l}
   Every student who missed class got a detention.\\
@@ -214,8 +217,9 @@ $\therefore \neg D(Penelope)$\\
 
 \noindent The argument is invalid. If M(Penelope) is false and D(Penelope) is true, then the hypothesis are true and conclusion is false.\\
 \end{center}
+\qed
 
-Exercise 1.13.5, section e
+\noindent Exercise 1.13.5 E
 \begin{center}
   \begin{tabular}{l}
   Every student who missed class or got a detention did not get an A.\\
@@ -261,71 +265,142 @@ $\therefore \neg D(Penelope)$\\
 
 \end{tabular}
 \end{center}
-
-
-\noindent Question 6:\\
-Exercise 2.4.1, section d\\
+\qed
+\newpage
+\noindent \textbf{Question 6:}\\
+Exercise 2.4.1 D\\
 The product of two odd integers is an odd integer.
 \begin{proof}
-	Let x, y be an odd integer
+	By Direct proof: Let x, y be odd integers. Then $\exists x | x = 2k + 1$ for some integer k and $\exists y | y = 2j + 1$ for some integer j. Then 
 	\begin{align*}
+	xy &= (2k+1)(2j+1)\\
+	&=4kj + 2k + 2j + 1\\
+	&=2(2kj + k + j) + 1\\
 	\end{align*}
+	Since (2kj + k + j) is an integer in $xy = 2(2kj + k +j) + 1$, the product of xy is also an odd integer.
+	
 \end{proof}
 
-Exercise 2.4.3, section b\\
+
+\noindent Exercise 2.4.3 B\\\\
 If x is a real number and $x \leq 3, \text{then} 12 - 7x + x^2 \geq 0$.\\
 \begin{proof}
-	Let x be a real number$ \wedge x \leq 3$
+	By direct proof: Let x be a real number and $ x \leq 3$
+	\begin{align*}
+	12-7x+x^2&= x^2 -7x + 12 \geq 0\\
+	&=(x-3)(x-4) \geq 0
+	\end{align*}
+	Since $x \leq 3$, $x - 3 \leq 0$ and $x - 4 \leq 0$, then $(x-3)(x-4) \geq 0$ 
 \end{proof}
 
+\newpage
+
+\noindent \textbf{Question 7:}\\
 
 
-\noindent Question 7:\\
+\noindent Exercise 2.5.1 D \\
 
-
-Exercise 2.5.1 section d \\
-
-For every integer n, if $n^2 - 2n + 7$ is even, then n is odd\\
+\noindent For every integer n, if $n^2 - 2n + 7$ is even, then n is odd\\
 \begin{proof}
-  Let $t,u \in \mathbb{R}$ where $t=xy$ and $u=zw$. So,
+	By Contrapositive: Assume n is an even integer such that n = 2k for some integer k. Show $n^2 - 2n +7$ is an odd integer. 
   \begin{align*}
-    4xyzw &= 2\cdot2tu \\
-    &\le 2\cdot(t^2+u^2) \\
-    &= 2\cdot((xy)^2+(zw)^2) &&\text{(substituting variables)} \\
-    &= 2\cdot(x^2y^2+z^2w^2) \\ 
-    &= 2x^2y^2+2z^2w^2 \\
-    &\le ((x^2)^2+(y^2)^2)+((z^2)^2)+(w^2)^2) \\
-    &= x^4+y^4+z^4+w^4 &&\qedhere
+  	n^2 - 2n + 7 &= (2k)^2 - 2(2k) + 7\\
+	&=4k^2 - 4k + 7\\
+	&=2(2k^2 - 2k + 3) + 1
   \end{align*}
+  Since k is an integer, then $(2k^2 - 2k + 3)$ is also an integer in $2(2k^2 - 2k + 3)$. Therefore, $n^2 - 2n + 7 = 2k+1$ is an odd integer.
+  
 \end{proof}
 
-Exercise 2.5.4 section a\\
+\noindent Exercise 2.5.4 A\\
 
-For every pair of real numbers x and y, if $x^3 + xy^2 \leq x^2y + y^3$ then $x \leq y$\\
+\noindent For every pair of real numbers x and y, if $x^3 + xy^2 \leq x^2y + y^3$ then $x \leq y$\\
+\begin{proof}
+By contrapositive: Assume for every pair of real numbers x and y, x > y. Show $x^3 + xy^2 > x^2y + y^3$\\\\
 
-Exercise 2.5.4 section b\\
+\begin{align*}
+x^3 + xy^2 &= x(x^2 + y^2)\\
+&> y(x^2 + y^2) \text{ by substitution x > y} \\ 
+&= x^2y + y^3 \qedhere
+\end{align*}
+\end{proof}
 
-For every pair of real numbers x and y, if $x + y > 20$\\
+\noindent Exercise 2.5.4 B\\
+
+\noindent For every pair of real numbers x and y, if $x + y > 20$ then $x > 10$ or $y > 10$.\\
+\begin{proof}
+By Contrapositive: Assume for every pair of real numbers x and y, $x \leq 10$ and $y \leq 10$. Show $x + y \leq 20$\\
+\begin{align*}
+&x \leq 10 + y \leq 10\\ &= x + y \leq 20
+\end{align*}
+\end{proof}
   
-Exercise 2.5.5 section c\\
+\noindent Exercise 2.5.5 C\\
 
 For every non-zero real number x, if x is irrational then $1/x$ is irrational\\
+\begin{proof}
+By Contrapostive: Assume x is a real number and $1/x$ is not irrational. Show that x is rational for every non zero real number. \\\\
+Since $1/x$ is a real number and not irrational, then it has to be a rational number.\\
+There exists an $a$ and $b$ such that $a$ and $b$ are integers.\\
+\begin{align*}
+&1/x = a/b \text{ ($a \not = 0$ and $b \not = 0$)}\\
+&x = b/a\\
+\end{align*}
+Since x is a ratio of two integers, a and b, x is rational.\\ \qedhere
+\end{proof}
 
-\noindent Question 8: \\
-
-
-Exercise 2.6.6 sections c\\
-
-The average of three real numbers is greater than or equal to at least one of the numbers.\\
-
-Exercise 2.6.6 sections d\\
-
-There is no smallest integer\\
-
-\noindent Question 9:\\
-Exercise 2.7.2 section b\\
-
-If integers x and y have the same parity, then $x + y$ is even. The parity of a number tells whether the number is odd or even. If x and y have the same parity, they are either both even or both odd.\\
+\newpage
+\noindent \textbf{Question 8:} \\
 
 
+\noindent Exercise 2.6.6 C\\
+
+\noindent The average of three real numbers is greater than or equal to at least one of the numbers.\\
+\begin{proof}
+By Contradiction: Assume x, y, z are real numbers. Show the average of the three real numbers is less than all thee numbers.
+\begin{align*}
+\frac{x + y + z}{3} < x,  \frac{x + y + z}{3} < y, \frac{x+y+z}{3} < z\\
+\\
+\frac{x+y+z}{3} + \frac{x+y+z}{3} + \frac{x+y+z}{3} &< x + y + z\\
+\frac{3x + 3y + 3z}{3} &< x + y + z\\
+x + y + z &< x + y + z
+\end{align*}
+
+\noindent Since $x + y + z \not < x + y + z$, then the average of three real numbers is greater than or equal to at least one of the three numbers. \qedhere
+\end{proof}
+
+\noindent Exercise 2.6.6 D\\
+
+\noindent There is no smallest integer\\
+\begin{proof}
+By Contradiction: Assume There is a smallest integer. Let smallest integer be $k$.\\
+Since k is an integer, subtracting k by 1 will give us an integer $k-1$. Since $(k - 1) < k$,  there exists a smaller integer.\\ $\therefore$ There is no smallest integer.
+
+\end{proof}
+
+\newpage
+
+\noindent \textbf{Question 9:}\\
+Exercise 2.7.2 B\\
+
+\noindent If integers x and y have the same parity, then $x + y$ is even. The parity of a number tells whether the number is odd or even. If x and y have the same parity, they are either both even or both odd.\\
+
+\begin{proof}
+By Cases:
+
+\noindent \textbf{Case 1:  x and y are even integers.} If x and y are even, x = 2k and y = 2j for some integer k, j\\
+\begin{align*}
+x + y &= 2k + 2j\\
+&= 2(k + j)\\
+\end{align*}
+Since k and j are integers, there exists an integer $l$ such that $l = k + j$. Since $x + y = 2l$, $x + y$ is even\\\\
+
+\noindent \textbf{Case 2:  x and y are odd integers.} If x and y are odd, x = 2m + 1and y = 2n + 1 for some integer m, n\\
+\begin{align*}
+x + y &= 2m + 1 + 2n + 1\\
+&= 2m + 2n + 2\\
+&= 2(m + n + 1)
+\end{align*}
+Since m, n, and 1 are integers, there exists an integer $z$, such that $z = (m + n + 1)$, Since $x + y = 2z$, x + y is even.
+\end{proof}
 \end{document}
