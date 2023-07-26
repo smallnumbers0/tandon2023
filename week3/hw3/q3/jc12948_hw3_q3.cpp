@@ -38,8 +38,6 @@ This equation has a single real solution x=-2.0
 using namespace std;
 
 int main() {
-    const int NUMERATOR_FOUR = 4;
-    const int DENOMINATOR_TWO = 2;
 
     double a, b, c;
     double discriminant, resultOne, resultTwo;
@@ -53,9 +51,9 @@ int main() {
 
     //Solving
 
-    discriminant = pow(b, 2) - (NUMERATOR_FOUR * a * c);
-    resultOne = (-b + sqrt(discriminant)) / (DENOMINATOR_TWO * a);
-    resultTwo = (-b - sqrt(discriminant)) / (DENOMINATOR_TWO * a);
+    discriminant = pow(b, 2) - (4 * a * c);
+    resultOne = (-b + sqrt(discriminant)) / (2 * a);
+    resultTwo = (-b - sqrt(discriminant)) / (2 * a);
 
     //Determining solutions
 
@@ -65,15 +63,15 @@ int main() {
     else if(a == 0 && b == 0 && c != 0) {
         cout<<"No solution"<<endl;
     }
+     else if(a != 0 && discriminant < 0) {
+        cout<<"No real solutions"<<endl;
+    }
     else if(a != 0 && discriminant == 0) {
         cout<<"One real solution: "<<resultOne<<endl;
     }
-    else if(a != 0 && discriminant > 0) {
+    else {
         cout<<"Two real solutions: "<<resultOne<<" and "<<resultTwo<<endl;
     }
-    else if(a != 0 && discriminant < 0) {
-        cout<<"No real solutions"<<endl;
-    }
-
+   
     return 0;
 }
