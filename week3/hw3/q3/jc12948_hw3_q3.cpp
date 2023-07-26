@@ -38,16 +38,42 @@ This equation has a single real solution x=-2.0
 using namespace std;
 
 int main() {
+    const int NUMERATOR_FOUR = 4;
+    const int DENOMINATOR_TWO = 2;
 
-    int a, b, c;
-    double x;
+    double a, b, c;
+    double discriminant, resultOne, resultTwo;
     
-    cout<<"Please enter a value of a: "<<endl;
+    cout<<"Please enter a value for a: "<<endl;
     cin>>a;
-    cout<<"Please enter a value of b: "<<endl;
+    cout<<"Please enter a value for b: "<<endl;
     cin>>b;
-    cout<<"Please enter a value of c: "<<endl;
+    cout<<"Please enter a value for c: "<<endl;
     cin>>c;
+
+    //Solving
+
+    discriminant = pow(b, 2) - (NUMERATOR_FOUR * a * c);
+    resultOne = (-b + sqrt(discriminant)) / (DENOMINATOR_TWO * a);
+    resultTwo = (-b - sqrt(discriminant)) / (DENOMINATOR_TWO * a);
+
+    //Determining solutions
+
+    if(a == 0 && b == 0 && c == 0) {
+        cout<<"Infinite number of solutions"<<endl;
+    }
+    else if(a == 0 && b == 0 && c != 0) {
+        cout<<"No solution"<<endl;
+    }
+    else if(a != 0 && discriminant == 0) {
+        cout<<"One real solution: "<<resultOne<<endl;
+    }
+    else if(a != 0 && discriminant > 0) {
+        cout<<"Two real solutions: "<<resultOne<<" and "<<resultTwo<<endl;
+    }
+    else if(a != 0 && discriminant < 0) {
+        cout<<"No real solutions"<<endl;
+    }
 
     return 0;
 }
