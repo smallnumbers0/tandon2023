@@ -52,8 +52,7 @@ int main() {
     //Solving
 
     discriminant = pow(b, 2) - (4 * a * c);
-    resultOne = (-b + sqrt(discriminant)) / (2 * a);
-    resultTwo = (-b - sqrt(discriminant)) / (2 * a);
+    
 
     //Determining solutions
 
@@ -67,11 +66,18 @@ int main() {
         cout<<"No real solutions"<<endl;
     }
     else if(a != 0 && discriminant == 0) {
+        resultOne = (-b + sqrt(discriminant)) / (2 * a);
         cout<<"One real solution: "<<resultOne<<endl;
     }
-    else {
+    else if(a != 0 && discriminant > 0) {
+        resultOne = (-b + sqrt(discriminant)) / (2 * a);
+        resultTwo = (-b - sqrt(discriminant)) / (2 * a);
         cout<<"Two real solutions: "<<resultOne<<" and "<<resultTwo<<endl;
+        cout<<resultOne<<endl;
     }
+    else 
+        cout<<"No Real Solutions"<<endl;
+
    
     return 0;
 }
