@@ -19,7 +19,7 @@ using namespace std;
 int main() {
     double userInput, decimal;
     int roundMethod, roundedInput;
-    int temp; //turn userInput into int to remove decimal
+    int temp; 
 
     cout<<"Please enter a Real Number: "<<endl;
     cin>>userInput;
@@ -29,9 +29,7 @@ int main() {
 
     switch(roundMethod) {
         case 1: 
-            //temp = userinput
-            //if userinput  >= 0 { decimal = userinput - temp } else  decimal = temp - userinput
-            //roundednumber = temp
+           
             temp = userInput;
             if(userInput >= 0) {
                 decimal = userInput - temp;
@@ -88,6 +86,4 @@ int main() {
             break;
             
     }
-
-
 }

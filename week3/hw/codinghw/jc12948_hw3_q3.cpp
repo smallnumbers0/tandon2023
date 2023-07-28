@@ -72,8 +72,7 @@ int main() {
     else if(a != 0 && discriminant > 0) {
         resultOne = (-b + sqrt(discriminant)) / (2 * a);
         resultTwo = (-b - sqrt(discriminant)) / (2 * a);
-        cout<<"Two real solutions: "<<resultOne<<" and "<<resultTwo<<endl;
-        cout<<resultOne<<endl;
+        cout<<"Two real solutions: "<<resultOne + 0<<" and "<<resultTwo<<endl;
     }
     else 
         cout<<"No Real Solutions"<<endl;
