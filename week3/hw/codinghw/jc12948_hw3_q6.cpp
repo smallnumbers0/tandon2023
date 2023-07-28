@@ -60,6 +60,6 @@ int main() {
     }
 
 totalCost = callLength * rate;
-cout<<totalCost<<endl;
+cout<<"The total cost is: $"<<totalCost<<endl;
 
 }
