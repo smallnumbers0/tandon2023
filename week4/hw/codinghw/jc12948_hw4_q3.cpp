@@ -10,9 +10,28 @@ Implementation Requirements:
 You are not allowed to use arrays
 */
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main() {
 
+    int input, temp; 
+    string binaryRep; 
+
+    cout<<"Enter a decimal number: "<<endl;
+    cin>>input;
+    temp = input;
+
+    while (temp > 0) {
+        if(temp % 2 == 0) {
+            binaryRep = "0" + binaryRep;
+        }
+        else {
+            binaryRep = "1" + binaryRep;
+        }
+        temp /= 2;
+    }
+
+    cout<<binaryRep<<endl;
     return 0;
 }
