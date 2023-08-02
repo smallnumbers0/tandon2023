@@ -9,23 +9,9 @@ Each section should interact with the user exactly as it shows in the following 
 6
 */
 
-// #include <iostream>
-
-// using namespace std;
-
-// int main() {
-    
-//     int input;
-
-//     cout<<"Please enter a positive integer: "<<endl;
-//     cin>>input;
-
-//     for(int i = 1; i <= input; i++) {
-//         cout<<i<<": "<<i * 2<<endl;
-//     }
-//     return 0;
-// }
-
+/**********************************************/
+/***************** While Loop *****************/
+/**********************************************/
 #include <iostream>
 
 using namespace std;
@@ -33,13 +19,35 @@ using namespace std;
 int main() {
     int input;
 
-    cout<<"Please enter a positive integer: "<<endl;
-    cin>>input;
+    cout<< "Please enter a positive integer: " <<endl;
+    cin >> input;
 
     int i = 1;
     while(i <= input) {
-        cout<<i<<": "<<i * 2<<endl;
+        cout<< i << ": " << i * 2<<endl;
         i++;
     }
     return 0;
 }
+/**********************************************/
+/**************** FOR LOOP ********************/
+/**********************************************/
+
+/*
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    
+    int input;
+
+    cout<<"Please enter a positive integer: "<<endl;
+    cin>>input;
+
+    for(int i = 1; i <= input; i++) {
+        cout<<i<<": "<<i * 2<<endl;
+    }
+    return 0;
+}
+*/

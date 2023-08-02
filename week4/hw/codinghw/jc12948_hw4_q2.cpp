@@ -1,8 +1,5 @@
 /*
 Question 2:
-Romandigit I V X L C D M Decimal value 1 5 10 50 100 500 1000
-1.
-not. 2.
 Your program should interact with the user exactly as it shows in the following example: Enter decimal number:
 147
 147 is CXXXXVII
@@ -25,9 +22,48 @@ the simplified Roman numerals system.
 */
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main() {
 
+    int input, temp;
+    string romanNum;
+
+    cout<<"Enter decimal number: "<<endl;
+    cin>>input;
+
+    temp = input;
+    while (temp > 0) {
+        if(temp >= 1000) {
+            romanNum += "M";
+            temp -= 1000;
+        }
+        else if(temp >= 500) {
+            romanNum += "D";
+            temp -= 500;
+        }
+        else if (temp >= 100) {
+            romanNum += "C";
+            temp -= 100;
+        }
+        else if (temp >= 50) {
+            romanNum += "L";
+            temp -= 50;
+        }
+        else if (temp >= 10) {
+            romanNum += "X";
+            temp -= 10;
+        }
+        else if (temp >= 5) {
+            romanNum += "V";
+            temp -= 5;
+        }
+        else {
+            romanNum += "I";
+            temp -= 1;
+        }
+    }
+    cout<<input<<" is "<<romanNum<<endl;
     return 0;
 }
