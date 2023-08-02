@@ -9,3 +9,10 @@ Implementation Requirements:
 
 You are not allowed to use arrays
 */
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    return 0;
+}

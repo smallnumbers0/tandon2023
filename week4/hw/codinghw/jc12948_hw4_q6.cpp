@@ -11,3 +11,10 @@ For example, if n=30, the program should print:
 26
 28
 */
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    return 0;
+}
