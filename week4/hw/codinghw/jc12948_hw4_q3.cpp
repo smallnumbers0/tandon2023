@@ -10,27 +10,33 @@ Implementation Requirements:
 You are not allowed to use arrays
 */
 #include <iostream>
-#include <cmath>
+
 using namespace std;
 
 int main() {
- 
+    const int DIGIT_POSITION = 10;
+
     long int input, binaryRep = 0;
     long int remainder;
-    long int position = 1; //to slowly add to ones place, tens, hundreds etc
+    long int position = 1; 
 
     cout<<"Enter a decimal number: "<<endl;
     cin>>input;
 
-    for(int temp = input; temp != 0; position *= 10) {
-        remainder = temp % 2;
-        temp = temp / 2;
-        binaryRep += remainder * position;
+    for(int i = input; i != 0; position *= DIGIT_POSITION) {
+        remainder = i % 2; 
+        i = i / 2; 
+        binaryRep += remainder * position;  
     }
 
     cout<<input<<" is "<<binaryRep<<endl;
     return 0;
 }
+
+
+
+
+
 
 /**************************************/
 /********WRONG STRING APPROACH*********/

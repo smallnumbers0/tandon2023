@@ -16,5 +16,29 @@ using namespace std;
 
 int main() {
 
+
+    int input, counterEven = 0, counterOdd = 0;
+    cout<<"Please enter an integer: "<<endl;
+    cin>>input;
+
+    for(int i = 1; i < input; i++) {
+        int countOdd = 0;
+        int countEven = 0;
+        
+        for(int temp = i; temp > 0; temp /= 10) {
+            int tempDigit = temp % 10;
+            if(tempDigit % 2 != 0) {
+                countOdd++;
+            }
+            else {
+                countEven++;
+            }
+        }
+        
+        if(countOdd < countEven) {
+            cout<< i <<endl;
+        }
+    }
+
     return 0;
 }
