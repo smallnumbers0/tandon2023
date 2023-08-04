@@ -21,12 +21,12 @@ int main() {
     cout<<"Please enter an integer: "<<endl;
     cin>>input;
 
-    for(int i = 1; i < input; i++) {
+    for(int i = 0; i <= input; i++) {
         int countOdd = 0;
         int countEven = 0;
         
         for(int temp = i; temp > 0; temp /= 10) {
-            int tempDigit = temp % 10;
+            int tempDigit = temp % 10; //check each digit seperately
             if(tempDigit % 2 != 0) {
                 countOdd++;
             }
