@@ -25,8 +25,8 @@ int main() {
         int countOdd = 0;
         int countEven = 0;
         
-        for(int temp = i; temp > 0; temp /= 10) {
-            int tempDigit = temp % 10; //check each digit seperately
+        for(int temp = i; temp > 0; temp /= 10) { //to check each digit seperately
+            int tempDigit = temp % 10; 
             if(tempDigit % 2 != 0) {
                 countOdd++;
             }

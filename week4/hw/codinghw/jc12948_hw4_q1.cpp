@@ -24,30 +24,32 @@ int main() {
 
     int i = 1;
     while(i <= input) {
-        cout<< i << ": " << i * 2<<endl;
+        cout<< i * 2<<endl;
         i++;
     }
     return 0;
 }
+
+/********************************************************************************************************/
+
 /**********************************************/
 /**************** FOR LOOP ********************/
 /**********************************************/
 
-/*
-#include <iostream>
 
-using namespace std;
+// #include <iostream>
 
-int main() {
+// using namespace std;
+
+// int main() {
     
-    int input;
+//     int input;
 
-    cout<<"Please enter a positive integer: "<<endl;
-    cin>>input;
+//     cout<<"Please enter a positive integer: "<<endl;
+//     cin>>input;
 
-    for(int i = 1; i <= input; i++) {
-        cout<<i<<": "<<i * 2<<endl;
-    }
-    return 0;
-}
-*/
+//     for(int i = 1; i <= input; i++) {
+//         cout<<i * 2<<endl;
+//     }
+//     return 0;
+// }
