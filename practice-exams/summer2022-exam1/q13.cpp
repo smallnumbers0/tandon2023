@@ -55,23 +55,24 @@ int main() {
         if(oddCount > evenCount) {
             oddNums++;
         }
-        else {
+        else if(oddCount == evenCount) {
             equalNums++;
         }
+        else oddNums = oddNums;
+        
         input = 0;
-        cout<<"Please enter a sequence of integers and -1 to end: "<<endl;
+       
         cin>>input;
     }
 
 
-cout<<"3 digits: "<<threeCount<<endl;
-cout<<"4 digits: "<<fourCount<<endl;
-cout<<"5 digits: "<<fiveCount<<endl;
-cout<<"6 digits: "<<sixCount<<endl;
-cout<<"7 digits: "<<sevenCount<<endl;
-cout<<"odd nums: "<<oddNums<<endl;
-cout<<"equal nums: "<<equalNums<<endl;
-
-
+    cout<<"3 digits: "<<threeCount<<endl;
+    cout<<"4 digits: "<<fourCount<<endl;
+    cout<<"5 digits: "<<fiveCount<<endl;
+    cout<<"6 digits: "<<sixCount<<endl;
+    cout<<"7 digits: "<<sevenCount<<endl;
+    cout<<"odd nums: "<<oddNums<<endl;
+    cout<<"equal nums: "<<equalNums<<endl;
+    
     return 0;
 }
