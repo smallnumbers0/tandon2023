@@ -10,3 +10,30 @@ prints the num’s elements in the Fibonacci sequence.Your program should intera
 Please enter a positive integer: 7
 13
 */
+
+#include <iostream>
+using namespace std;
+
+int fib(int n);
+
+int main() {
+    int input, result;
+
+    cout<<"Please enter a positive integer: "<<endl;
+    cin>>input;
+    result = fib(input);
+    cout<<result<<endl;
+    return 0;
+}
+
+int fib(int n) {
+    int previous_one = 1; //n - 1
+    int previous_two = 0; //n - 2
+    int result = 0;
+    for(int i = 1; i <= n; i++) {
+        previous_two = previous_one;
+        previous_one = result;
+        result = previous_one + previous_two;
+    }
+    return result;
+}

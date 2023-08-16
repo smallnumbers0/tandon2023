@@ -24,3 +24,39 @@ For example, if we call printPineTree(3, `#`), the expected output is:
       #####
      #######
 */
+
+#include <iostream>
+using namespace std;
+
+int printShiftedTriangle(int n, int m, char symbol);
+int printPineTree(int n, char symbol);
+
+int main() {
+  
+  int spaces;
+  int length;
+  char symbol;
+
+  cin>>length>>spaces>>symbol;
+
+  cout<<printShiftedTriangle(length, spaces, symbol)<<endl;
+
+  return 0;
+}
+
+int printShiftedTriangle(int n, int m, char symbol) {
+
+  for(int i = 0; i < m; i++) {
+    for(int j = 0; j < m; j++) {
+      cout<<" ";
+    }
+    for(int j = i; j <= n; j++) {
+      cout<<" ";
+    }
+    for(int j = 1; j <= 2*i + 1; j++) {
+      cout<<symbol;
+    }
+    cout<<endl;
+  }
+  return 0;
+}
