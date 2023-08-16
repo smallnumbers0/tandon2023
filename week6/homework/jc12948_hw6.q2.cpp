@@ -28,8 +28,8 @@ For example, if we call printPineTree(3, `#`), the expected output is:
 #include <iostream>
 using namespace std;
 
-int printShiftedTriangle(int n, int m, char symbol);
-int printPineTree(int n, char symbol);
+void printShiftedTriangle(int n, int m, char symbol);
+void printPineTree(int n, char symbol);
 
 int main() {
   
@@ -37,14 +37,16 @@ int main() {
   int length;
   char symbol;
 
+  cout<<"Please enter height of triangle, spaces, and symbol: "<<endl;
   cin>>length>>spaces>>symbol;
 
-  cout<<printShiftedTriangle(length, spaces, symbol)<<endl;
+  printShiftedTriangle(length, spaces, symbol);
+  printPineTree(length, symbol);
 
   return 0;
 }
 
-int printShiftedTriangle(int n, int m, char symbol) {
+void printShiftedTriangle(int n, int m, char symbol) {
 
   for(int i = 0; i < m; i++) {
     for(int j = 0; j < m; j++) {
@@ -58,5 +60,18 @@ int printShiftedTriangle(int n, int m, char symbol) {
     }
     cout<<endl;
   }
-  return 0;
+}
+
+void printPineTree(int n, char symbol) {
+  for(int k = 1; k <= n; k++) {
+    for(int i = 0; i < k + 1; i++) {
+      for(int j = i; j <= n; j++) {
+        cout<<" ";
+      }
+      for(int j = 1; j <= 2*i + 1; j++) {
+        cout<<symbol;
+      }
+      cout<<endl;
+    }
+  }
 }
