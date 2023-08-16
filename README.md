@@ -1,3 +1,3 @@
 # Tandon2023
 
-List of Materials for Tandon @ NYU CS Program
+All classes homework and exams  for Tandom Summer 2023
