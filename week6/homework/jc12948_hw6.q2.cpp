@@ -48,20 +48,29 @@ int main() {
 
 void printShiftedTriangle(int n, int m, char symbol) {
 
-  for(int i = 0; i < m; i++) {
+  for(int i = 1; i <= n; i++) {
     for(int j = 0; j < m; j++) {
       cout<<" ";
     }
     for(int j = i; j <= n; j++) {
       cout<<" ";
     }
-    for(int j = 1; j <= 2*i + 1; j++) {
+    for(int j = 1; j <= 2*i - 1; j++) {
       cout<<symbol;
     }
     cout<<endl;
   }
 }
 
+/****Just call printShiftedTriangle()******/
+void printPineTree(int n, char symbol) {
+    for(int i = 1; i <= n; i++) {
+        printShiftedTriangle(i+1, n-i, symbol);
+    }
+}
+
+/*TRIPLE NESTED FOR LOOP WAY*/
+/********************************************
 void printPineTree(int n, char symbol) {
   for(int k = 1; k <= n; k++) {
     for(int i = 0; i < k + 1; i++) {
@@ -75,3 +84,4 @@ void printPineTree(int n, char symbol) {
     }
   }
 }
+*********************************************/
