@@ -27,8 +27,8 @@ int main() {
 }
 
 int fib(int n) {
-    int previous_one = 1; //n - 1
-    int previous_two = 0; //n - 2
+    int previous_one = 1; 
+    int previous_two = 0; 
     int result = 0;
     for(int i = 1; i <= n; i++) {
         previous_two = previous_one;
