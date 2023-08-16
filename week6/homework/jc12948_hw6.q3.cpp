@@ -19,3 +19,36 @@ Notes:
 2. Since the values of the factorials will grow to be very large, use a variable of type double
 to store them.
 */
+
+#include <iostream>
+using namespace std;
+
+double eApprox(int n);
+
+int main() { 
+    int n;
+    cout.precision(30);
+        cin>>n;
+        for (int n = 1; n <= 15; n++) {
+            cout<<"n = "<<n<<'\t'<<eApprox(n)<<endl; }
+    return 0; 
+}
+
+double eApprox(int n) {
+    double sum = 1;
+    double factorial = 1;
+    
+    for(double i = 1; i <= n; i++) {
+        if(i == 0) {
+            sum = sum + 1;
+        } 
+        else if( i == 1) {
+            sum += 1;
+        }
+        else {
+            factorial *= i;
+            sum += 1/factorial;
+        }
+    }
+    return sum;
+}
