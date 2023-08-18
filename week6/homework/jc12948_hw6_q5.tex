@@ -21,8 +21,19 @@ Summer 2023 Name: Jacky Choi}
 \textbf{a.}
 $5n^3 + 2n^2 + 3n = \theta (n^3)$\\\\
 \begin{proof}
-There exist a constant c = 10
+
+Assume $n > 0$, then $5n^3 + 2n^2 + 3n \leq 5n^3 + 2n^3 + 3n^3$\\
+$5n^3 + 2n^2 + 3n \leq 10n^3$\\
+$5n^3 < 5n^3 + 2n^2 + 3n$\\
+$5n^3 + 2n^2 + 3n = \theta(n^3)$
 \end{proof}
 \noindent \textbf{b.}
 $\sqrt{7n^2 + 2n - 8} = \theta (n)$\\\\
+\begin{proof}
+
+    Assume $n > 4$, then $\sqrt{7n^2 + 2n - 8} < \sqrt{7n^2 + 2n^2}$\\
+    $\sqrt{7n^2 + 2n^2} < \sqrt{3n^2} = 3n$\\
+    and $\sqrt{7n^2 + 2n^2 - 8} > \sqrt{7n^2} = 7x$\\
+    then $\sqrt{7n^2 + 2n^2 - 8} = \theta(n)$
+    \end{proof}
 \end{document}

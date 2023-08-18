@@ -1,8 +1,8 @@
-PWD /Users/messydev/tandon2023/week6/homework
+PWD /Users/magic/tandon2023/week6/homework
 INPUT /usr/local/texlive/2023/texmf.cnf
 INPUT /usr/local/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/messydev/tandon2023/week6/homework/jc12948_hw6_q5.tex
+INPUT /Users/magic/tandon2023/week6/homework/jc12948_hw6_q5.tex
 OUTPUT jc12948_hw6_q5.log
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
