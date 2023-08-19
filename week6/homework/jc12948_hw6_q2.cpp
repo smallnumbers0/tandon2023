@@ -69,7 +69,7 @@ void printPineTree(int n, char symbol) {
     }
 }
 
-/*TRIPLE NESTED FOR LOOP WAY*/
+/*FOR LOOP*/
 /********************************************
 void printPineTree(int n, char symbol) {
   for(int k = 1; k <= n; k++) {
