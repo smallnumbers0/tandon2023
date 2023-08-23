@@ -20,49 +20,103 @@ Summer 2023 Name: Jacky Choi}
 \textbf{Exercise 8.2.2 b}\\
 $f(n) = n^{(3/2)}$ Prove that it is not true that $f = \Omega(n^2)$\\\\
 \textbf{Exercise 8.3.5 a}\\
-
+This algorithm checks and rearranges the order of input sequence of numbers around the number held in variable p. Those that are less than p go to the left and those that are greater than p go to the right. \\\\
 \textbf{Exercise 8.3.5 b}\\
+The total number of times "i:=i+1" or "j:=j-1" are executed depends on the numbers of the sequence input. "i:=i+1" runs to the amount of numbers < p and "j:=j-1" runs to the amount of numbers > p. So in order to maximize exeuctions for "i:=i+1" , inputs have to be negative and for "j:=j-1" inputs have to be positive.\\\\
 \textbf{Exercise 8.3.5 c}\\
+The total number of swaps primarily depends on the values of the inputs  If we let p = 0, a sequence of all negative numbers will minimize swap and a sequence of all positive numbers will maximize swaps.\\\\
 \textbf{Exercise 8.3.5 d}\\
-\textbf{Exercise 8.3.5 e}
+$\Omega(n)$\\\\
+\textbf{Exercise 8.3.5 e}\\
+$O(n)$ It is a constant * n interation.
 \newpage
 \noindent \textbf{Question 4}\\\\
 \textbf{Exercise 5.1.2 b}\\
-\textbf{Exercise 5.1.2 c}\\\\
-\textbf{Exercise 5.3.2 a}\\\\
+$40^9 + 40^8 + 40^7$\\\\
+\textbf{Exercise 5.1.2 c}\\
+$C(14,1) * (40^8 + 40^7 + 40^6)$\\\\
+\textbf{Exercise 5.3.2 a}\\
+\{a,b,c\}\\
+$C(3,1) * 2^9$\\\\
 \textbf{Exercise 5.3.3 b}\\
-\textbf{Exercise 5.3.3 c}\\\\
+$C(10,1) * 26^4 * C(9,1) * C(8,1)$\\\\
+\textbf{Exercise 5.3.3 c}\\
+$C(10,1) * C(26,4) * C(9,1) * C(8,1)$\\\\
 \textbf{Exercise 5.2.3 a}\\
+Assume x $\in B^9$ then $f(x)$ = $E_{10}$ Since 0 is an even number, and 1 is an odd number, there will always be either an odd number of 1s and even number of 0s or an even number of 1s and odd number of 0s in the binary string of length 9. Since $E_{10}$ holds an even number of 1s, we can determine if we need to add 1 or add 0 to maintain the even number of 1s for $E_{10}$ to keep it even. For example, if there are an even amount of 1s, we add 0, and if there are an odd amount of 1s we add 1. This means that every unique binary string of lenfth 9 in $B^9$ will map to a unique string of length 10 in $E_{10}$ making it a one-to-one function. Since every element in $E_{10}$ can map to at least one element in $B^9$ by simply removing the 1 or 0 at the end of the binary string,then function is also onto. Therefore it is a bijection. \\\\
 \textbf{Exercise 5.2.3 b}\\
+$E_{10} = 512$
 \newpage
 \noindent \textbf{Question 5}\\\\
 \textbf{Exercise 5.4.2 a}\\
-\textbf{Exercise 5.4.2 b}\\\\
+$2 * 10^4 = 20000$\\\\
+\textbf{Exercise 5.4.2 b}\\
+$2 * (10 * 9 * 8 * 7) = 10080$\\\\
 \textbf{Exercise 5.5.3 a}\\
+10 bit string\\\\
+No restrictions\\
+$2^10 = 1024$\\\\
 \textbf{Exercise 5.5.3 b}\\
+The string starts with 001\\
+$2^7 - 128$\\\\
 \textbf{Exercise 5.5.3 c}\\
+The string starts with 001 or 10\\
+$2^7 + 2^8 = 384$\\\\
 \textbf{Exercise 5.5.3 d}\\
+The first 2 bits are the same as the last two bits\\
+$2^1 * 2^6 * 2^1 = 256$\\\\
 \textbf{Exercise 5.5.3 e}\\
+The string has exactly six 0s\\
+$C(10,6) = 10! / 6!4! = 210$\\\\
 \textbf{Exercise 5.5.3 f}\\
-\textbf{Exercise 5.5.3 g}\\\\
-\textbf{Exercise 5.5.5 a}\\\\
+The string has exaclt six 0s and the first bit is 1.\\
+$C(9,6) = 9!/6!3! = 84$\\\\
+\textbf{Exercise 5.5.3 g}\\
+There is exactly one 1 in the first half and exactly three 1's in the second half.\\
+$C(5,1) * C(5,3) = 5 * \frac{5!}{3!2!} = 50$\\\\
+\textbf{Exercise 5.5.5 a}\\
+Choose 10 boys of 30 boys and 10 girls of 35 girls\\
+$C(30,10) * C(35,10)$\\\\
 \textbf{Exercise 5.5.8 c}\\
+How many 5 card hands are made intirely of hearts and diamonds?\\
+There are 13 hearts and 13 diamonds so 26 choose 5\\
+$C(26,5)$\\\\
 \textbf{Exercise 5.5.8 d}\\
+How many 5 card hands have four cards of the same rank?\\
+There are only 4 cards of the same rank and there are 13 ranks. 13 choose 1 and 4 choose 4 from the rank and we are wleft with 12 ranks choose 1 and finally 4 cards of that rank choose 1 for the final card\\
+$C(13,1) * C(4,4) * C(12,1) * C(4,1) = 624$\\\\
 \textbf{Exercise 5.5.8 e}\\
-\textbf{Exercise 5.5.8 f}\\\\
+A full house\\
+$C(13,1) * C(4,3) * C(12,1)*C(4,2) = 3744$\\\\
+\textbf{Exercise 5.5.8 f}\\
+5 card hand without 2 cards from the same rank\\
+$C(13,5) * 4^5$\\\\
 \textbf{Exercise 5.6.6 a}\\
+$C(44,5) * C(56,5)$\\\\
 \textbf{Exercise 5.6.6 b}\\
+$C(44,1) * C(43,1) * C(56,1) * C(55,1)$\\\\
 \newpage
 \noindent \textbf{Question 6}\\\\
 \textbf{Exercise 5.7.2 a}\\
-\textbf{Exercise 5.7.2 b}\\\\
+How many 5 card hands have at least 1 club?\\
+Find all possible combinations minus all combinations with no clubs\\
+$C(52,5) - C((52-13),4)$\\\\
+\textbf{Exercise 5.7.2 b}\\
+How many 5 card hands have at least 2 cards within the same rank?\\
+$C(52,5) - C(13,5)*4^5$\\\\
 \textbf{Exercise 5.8.4 a}\\
+$5^{20}$\\\\
 \textbf{Exercise 5.8.4 b}\\\\
+$\frac{20!}{4!4!4!4!4!}$
 \newpage
 \noindent \textbf{Question 7}\\\\
 How many one-to-one functions are there from a set with five elements to sets with the following number of elements?\\
 a. 4\\
+This would not be one-to-one since 4 is less than 5 elements in the domain.\\\\
 b. 5\\
+This would be 5! which is 5 x 4 x 3 x 2 x 1 = 120\\\\
 c. 6\\
+P(6,5) = 6 x 5 x 4 x 3 x 2 x 1 / (6-5)! = 720 \\\\
 d. 7\\
+P(7,5) = 7! / (7-5)! = 2520
 \end{document}
