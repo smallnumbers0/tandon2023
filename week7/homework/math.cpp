@@ -3,6 +3,6 @@ using namespace std;
 
 
 int main() {
-    cout<<7 * 6 * 5*4/(4 * 3 * 2)<<endl;
+    cout<<31%7<<endl;
     return 0;
 }
