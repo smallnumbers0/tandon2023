@@ -12,6 +12,8 @@ using namespace std;
 void analyzeDivisors(int num, int& outCountDivs, int& outSumDivs);
 bool isPerfect(int num);
 
+void printAmicableNums(int num);
+
 int main() { 
     int input;
     int outCountDivs = 1;
@@ -49,11 +51,21 @@ bool isPerfect(int num) {
     int countDivs = 1;
     int sumDivs = 1;
     analyzeDivisors(num, countDivs, sumDivs);
-    cout<<num<<endl;
-    cout<<countDivs<<endl;
-    cout<<sumDivs<<endl;
+    // cout<<num<<endl;
+    // cout<<countDivs<<endl;
+    // cout<<sumDivs<<endl;
     if(num == sumDivs) {
         return true;
     }
     else return false;
+}
+
+void printAmicableNums(int num, bool perfectNum) {
+    /***Perfect Nums***/
+    //for all nums >=2 to input 
+    //if perfectnum(i) is true then print i
+
+    /*Amicable nums*/
+    //compare sum of divisors and print if 
+    cout<<"test"<<endl;
 }
