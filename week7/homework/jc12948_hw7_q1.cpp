@@ -16,8 +16,10 @@ int main() {
     int startingDay = 0;
     int year = 0;
 
-    cout<<"Please enter an integer corresponding to the starting day. (Ex: 3 for Wednesday): ";
-    cin>>startingDay;
+    while(startingDay < 1 || startingDay > 7) {
+        cout<<"Please enter an integer corresponding to the starting day from 1 to 7 (Ex: 3 for Wednesday): ";
+        cin>>startingDay;
+    }
     cout<<"Please enter the year: ";
     cin>>year;
 
@@ -153,7 +155,8 @@ void printYearCalender(int year, int startingDay) {
             cout<<"December, "<<year<<endl;
             newStartDay = printMonthCalender(getNumOfDays(month, year), startingDay);
             startingDay = newStartDay + 1;
-            cout<<endl<<endl;
+            cout<<endl<<"End of year"<<endl;
         }
+        else cout<<"Error";
     }
 }

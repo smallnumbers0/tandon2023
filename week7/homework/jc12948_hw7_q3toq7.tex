@@ -18,8 +18,14 @@ Summer 2023 Name: Jacky Choi}
 
 \noindent \textbf{Question 3}\\\\
 \textbf{Exercise 8.2.2 b}\\
-$f(n) = n^{(3/2)}$ Prove that it is not true that $f = \Omega(n^2)$\\\\
-\textbf{Exercise 8.3.5 a}\\
+$f(n) = n^{(3/2)}$ Prove that it is not true that $f = \Omega(n^2)$\\
+\begin{proof}
+    By contradiction\\
+    For any n >= 1, there exist a c such that $f(n) <= c * n^2$\\
+    Since $n^{3/2} <= c * n^2$ for all n >= 1, we have shound that $f(n) <= c * n^2$ to be true\\
+    $\therefore f = \Omega(n^2)$ is not true.\\
+\end{proof}
+\noindent\textbf{Exercise 8.3.5 a}\\
 This algorithm checks and rearranges the order of input sequence of numbers around the number held in variable p. Those that are less than p go to the left and those that are greater than p go to the right. \\\\
 \textbf{Exercise 8.3.5 b}\\
 The total number of times "i:=i+1" or "j:=j-1" are executed depends on the numbers of the sequence input. "i:=i+1" runs to the amount of numbers < p and "j:=j-1" runs to the amount of numbers > p. So in order to maximize exeuctions for "i:=i+1" , inputs have to be negative and for "j:=j-1" inputs have to be positive.\\\\
@@ -37,7 +43,7 @@ $40^9 + 40^8 + 40^7$\\\\
 $C(14,1) * (40^8 + 40^7 + 40^6)$\\\\
 \textbf{Exercise 5.3.2 a}\\
 \{a,b,c\}\\
-$C(3,1) * 2^9$\\\\
+$C(3,1) * 2^9 = 1536$\\\\
 \textbf{Exercise 5.3.3 b}\\
 $C(10,1) * 26^4 * C(9,1) * C(8,1)$\\\\
 \textbf{Exercise 5.3.3 c}\\
@@ -55,7 +61,7 @@ $2 * (10 * 9 * 8 * 7) = 10080$\\\\
 \textbf{Exercise 5.5.3 a}\\
 10 bit string\\\\
 No restrictions\\
-$2^10 = 1024$\\\\
+$2^{10} = 1024$\\\\
 \textbf{Exercise 5.5.3 b}\\
 The string starts with 001\\
 $2^7 - 128$\\\\
@@ -80,7 +86,7 @@ $C(30,10) * C(35,10)$\\\\
 \textbf{Exercise 5.5.8 c}\\
 How many 5 card hands are made intirely of hearts and diamonds?\\
 There are 13 hearts and 13 diamonds so 26 choose 5\\
-$C(26,5)$\\\\
+$C(26,5) = 65780$\\\\
 \textbf{Exercise 5.5.8 d}\\
 How many 5 card hands have four cards of the same rank?\\
 There are only 4 cards of the same rank and there are 13 ranks. 13 choose 1 and 4 choose 4 from the rank and we are wleft with 12 ranks choose 1 and finally 4 cards of that rank choose 1 for the final card\\
@@ -90,7 +96,7 @@ A full house\\
 $C(13,1) * C(4,3) * C(12,1)*C(4,2) = 3744$\\\\
 \textbf{Exercise 5.5.8 f}\\
 5 card hand without 2 cards from the same rank\\
-$C(13,5) * 4^5$\\\\
+$C(13,5) * 4^5 = 1317888$\\\\
 \textbf{Exercise 5.6.6 a}\\
 $C(44,5) * C(56,5)$\\\\
 \textbf{Exercise 5.6.6 b}\\
