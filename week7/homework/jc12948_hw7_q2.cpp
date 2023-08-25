@@ -11,7 +11,7 @@ using namespace std;
 
 void analyzeDivisors(int num, int& outCountDivs, int& outSumDivs);
 bool isPerfect(int num);
-
+void printPerfNums(int num);
 void printAmicableNums(int num);
 
 int main() { 
@@ -20,14 +20,16 @@ int main() {
     int outSumDivs = 1;
     cout<<"Please enter a positive integer greater than or equal to 2: "<<endl;
     cin>>input;
-    analyzeDivisors(input, outCountDivs, outSumDivs);
-    cout<<outCountDivs<<endl;
-    cout<<outSumDivs<<endl;
+    // analyzeDivisors(input, outCountDivs, outSumDivs);
+    // cout<<outCountDivs<<endl;
+    // cout<<outSumDivs<<endl;
 
     if(isPerfect(input) == true) {
         cout<<"This number is a perfect number."<<endl;
     }
     else cout<<"This number is not a perfect number."<<endl;
+    printPerfNums(input);
+    printAmicableNums(input);
     return 0;
 }
 
@@ -60,12 +62,28 @@ bool isPerfect(int num) {
     else return false;
 }
 
-void printAmicableNums(int num, bool perfectNum) {
-    /***Perfect Nums***/
-    //for all nums >=2 to input 
-    //if perfectnum(i) is true then print i
+void printAmicableNums(int num) {
+    cout<<"Amicable Numbers from 2 to M: "<<endl;
+    for(int i = 2; i <= num; i++) {
+        int countDivs = 1;
+        int sumDivs = 1;
+        int countDivsPair = 1;
+        int sumDivsPair = 1;
+        
+        analyzeDivisors(i, countDivs, sumDivs);
+        analyzeDivisors(sumDivs, countDivsPair, sumDivsPair);
+        if(i == sumDivsPair && i < sumDivs) {
+            cout<<"("<<i<<", "<<sumDivs<<")"<<endl;
+        }
+    }
 
-    /*Amicable nums*/
-    //compare sum of divisors and print if 
-    cout<<"test"<<endl;
+}
+
+void printPerfNums(int num) {
+    cout<<"Perfect numbers from 2 to M: "<<endl;
+    for(int i = 2; i <= num; i++) {
+        if(isPerfect(i) == true) {
+            cout<<i<<" "<<endl;
+        }
+    }
 }
