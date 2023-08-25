@@ -67,11 +67,10 @@ void printAmicableNums(int num) {
     for(int i = 2; i <= num; i++) {
         int countDivs = 1;
         int sumDivs = 1;
-        int countDivsPair = 1;
         int sumDivsPair = 1;
         
         analyzeDivisors(i, countDivs, sumDivs);
-        analyzeDivisors(sumDivs, countDivsPair, sumDivsPair);
+        analyzeDivisors(sumDivs, countDivs, sumDivsPair);
         if(i == sumDivsPair && i < sumDivs) {
             cout<<"("<<i<<", "<<sumDivs<<")"<<endl;
         }
