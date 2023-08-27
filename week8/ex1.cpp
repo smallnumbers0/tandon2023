@@ -21,10 +21,16 @@ int main() {
 
     for(int i = 0; i < numStudents; i++) {
         sum += gradesList[i];
-
     }
     average = (double)sum / (double)numStudents;
     cout<<"The average is: "<<average<<endl;
+    cout<<"Above average grades: "<<endl;
+
+    for(int i = 0; i < numStudents; i++) {
+        if(gradesList[i] > average) {
+            cout<<gradesList[i];
+        }
+    }
 
     return 0;
 }
