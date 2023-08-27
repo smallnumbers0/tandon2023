@@ -28,7 +28,7 @@ int main() {
 
     for(int i = 0; i < numStudents; i++) {
         if(gradesList[i] > average) {
-            cout<<gradesList[i];
+            cout<<gradesList[i]<<endl;
         }
     }
 
