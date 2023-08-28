@@ -18,7 +18,6 @@ int main() {
     lowestNum = minInArray(arr, AMOUNT_OF_NUMS);
 
     cout<<"The lowest number in the array is: "<<lowestNum<<" and is located in the following indices: "<<endl;
-    //compare arr[i] to min and print
     for(int i = 0; i < AMOUNT_OF_NUMS; i++) {
         if(lowestNum == arr[i]) {
             cout<<i<<" ";
