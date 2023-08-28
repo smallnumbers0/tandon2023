@@ -30,15 +30,13 @@ int main() {
 }
 
 int minInArray(int arr[], int arrSize) {
-    int lowest;
-    int temp;
-    temp = arr[0];
+    int temp = arr[0];
+    int lowest = temp;
     for(int i = 1; i < arrSize; i++) {
         if(arr[i] <= temp) {
             lowest = arr[i];
             temp = lowest;
         }
-        else continue;
     }
     return lowest;
 }
