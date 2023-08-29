@@ -1,5 +1,5 @@
 //This program reads a word from the user and tells the user if it is a palindrome or not.
-//JAcky Choi NYU Tandon Bridge Summer 2023
+//Jacky Choi NYU Tandon Bridge Summer 2023
 
 #include <iostream>
 #include <string>
