@@ -7,7 +7,7 @@ void splitParity(int arr[], int arrSize);
 
 
 int main() {
-    int arr1[10] = {9, 2, 14, 12, -3};
+    int arr1[10] = {1,2,3,4,5};
     int arr1Size = 5;
     int arr2[10] = {21, 12, 6, 7, 14};
     int arr2Size = 5;
@@ -34,11 +34,21 @@ void printArray(int arr[], int arrSize) {
     cout<<endl;
 }
 void reverseArray(int arr[], int arrSize) {
+    int j = 0;
+    int temp = 0;
+    for(int i = arrSize - 1; i > arrSize/2; i--) {
+        temp = arr[i]; //temp = 5   //temp = 4
+        arr[i] = arr[j];  //arr[4] = 1 //arr[3] = 2
+        arr[j] = temp; //arr[0] = 1 //arr[1] = 4
+        j++; //j = 1
+    }
     cout<<"reverse"<<endl;
 }
 void removeOdd(int arr[], int arrSize) {
     cout<<"remove"<<endl;
 }
 void splitParity(int arr[], int arrSize) {
-    cout<<"reverse"<<endl;
+    cout<<"split"<<endl;
 }
+
+
