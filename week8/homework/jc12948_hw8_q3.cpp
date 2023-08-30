@@ -55,7 +55,25 @@ void removeOdd(int arr[], int& arrSize) {
     arrSize = j;
 }
 void splitParity(int arr[], int arrSize) { //[1, 2, 3, 4] to [3, 1, 2, 4]
-   cout<<"1"<<endl;
+    int j = arrSize - 1;
+    int temp = 0;
+    int k = 0;
+    for(int i = 0; i < arrSize; i++) {
+        if(arr[i] % 2 == 0) { //if number is even
+            temp = arr[j];
+            arr[j] = arr[i];
+            arr[i] = temp;
+            j--;
+        }
+    }
+    for(int i = 0; i < arrSize; i++) {
+         if(arr[i] % 2 != 0) { //if number is even
+            temp = arr[k];
+            arr[k] = arr[i];
+            arr[i] = temp;
+            k++;
+        }
+    }
 }
 
 
