@@ -54,8 +54,8 @@ void removeOdd(int arr[], int& arrSize) {
     }
     arrSize = j;
 }
-void splitParity(int arr[], int arrSize) {
-    cout<<"split"<<endl;
+void splitParity(int arr[], int arrSize) { //[1, 2, 3, 4] to [3, 1, 2, 4]
+   cout<<"1"<<endl;
 }
 
 
