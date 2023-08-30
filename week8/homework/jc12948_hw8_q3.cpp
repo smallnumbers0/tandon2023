@@ -2,7 +2,7 @@
 using namespace std;
 void printArray(int arr[], int arrSize);
 void reverseArray(int arr[], int arrSize);
-void removeOdd(int arr[], int arrSize);
+void removeOdd(int arr[], int& arrSize);
 void splitParity(int arr[], int arrSize);
 
 
@@ -44,8 +44,15 @@ void reverseArray(int arr[], int arrSize) {
     }
     cout<<"reverse"<<endl;
 }
-void removeOdd(int arr[], int arrSize) {
-    cout<<"remove"<<endl;
+void removeOdd(int arr[], int& arrSize) {
+    int j = 0;
+    for(int i = 0; i < arrSize; i++) {
+        if(arr[i] % 2 == 0) {
+            arr[j] = arr[i];  
+            j++;      
+        }
+    }
+    arrSize = j;
 }
 void splitParity(int arr[], int arrSize) {
     cout<<"split"<<endl;
