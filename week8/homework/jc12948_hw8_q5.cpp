@@ -11,4 +11,4 @@ int main() {
     cin>>first>>middle>>last;
     middle = middle[0];
     cout<<last<<", "<<first<<" "<<middle<<"."<<endl;
-}git
+}
