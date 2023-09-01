@@ -1,5 +1,8 @@
+//This program have 3 special functions that remove all odd nums, reverses array, and splits array from even and odd
+//Jacky Choi NYU Tandon Bridge Summer 2023
 #include <iostream>
 using namespace std;
+
 void printArray(int arr[], int arrSize);
 void reverseArray(int arr[], int arrSize);
 void removeOdd(int arr[], int& arrSize);
