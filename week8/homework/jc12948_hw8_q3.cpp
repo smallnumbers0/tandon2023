@@ -61,19 +61,18 @@ void splitParity(int arr[], int arrSize) { //[1, 2, 3, 4] to [3, 1, 2, 4]
     for(int i = 0; i < arrSize; i++) {
         if(arr[i] % 2 == 0) { //if number is even
             temp = arr[j];
-            arr[j] = arr[i];
+            arr[j] = arr[i]; //swap to the end
             arr[i] = temp;
             j--;
         }
     }
     for(int i = 0; i < arrSize; i++) {
-         if(arr[i] % 2 != 0) { //if number is even
+         if(arr[i] % 2 != 0) { //if number is odd
             temp = arr[k];
-            arr[k] = arr[i];
+            arr[k] = arr[i];  //swap to the front
             arr[i] = temp;
             k++;
         }
     }
 }
-
 
