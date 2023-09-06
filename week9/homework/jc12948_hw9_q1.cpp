@@ -16,7 +16,7 @@ int main() {
     string input;
     cout<<"Please enter a line of text: "<<endl;
     getline(cin, input);
-    
+
     for(int i = 0; i < input.length(); i++) {
         toLowerCase(input[i]);
     }
@@ -69,4 +69,5 @@ void countLetters(string str) {
             cout<<letterCount[i]<< "\t"<<alphabet[i]<<endl;
         }
     }
+    
 }
