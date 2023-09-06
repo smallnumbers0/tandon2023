@@ -3,6 +3,10 @@
         "ostream": "cpp",
         "iostream": "cpp",
         "string": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "chrono": "cpp",
+        "string_view": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp"
     }
 }
