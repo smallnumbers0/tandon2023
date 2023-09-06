@@ -14,22 +14,27 @@ int main() {
     getline(cin, input);
 
     cout<<input<<endl;
-    cout<<countWords(input);
+    cout<<countWords(input)<<endl;
     return 0;
 }
 //This function splits the words by the delimiters (period space, or comma) and returns the number of words.
 int countWords(string str) {
     int numWords = 0;
-    int count = 0;
-    string delimiter = " ,.";
+    char period = '.';
+    char comma = ',';
+    char space = ' ';
+    bool isWord;
+    isWord = true; 
     for(int i = 0; i < str.length(); i++) {
-        if(str[str.length()] == '.') {
-            numWords = numWords;
+        
+        if(isWord == true && (str[i] == period || str[i] == comma || str[i] == space)) {
+            isWord = false;
         }
-        else if(str[i] == ',' || str[i] == '.' || str[i] == ' ') {
+        else if(isWord == false && ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))) {
             numWords++;
+            isWord = true;
         }
-        //find delimiters " ,." and increment for eaach delimiter
+        
     }
     return numWords;
 }
