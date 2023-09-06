@@ -11,9 +11,10 @@ int main() {
 
     string input;
     cout<<"Please enter a line of text: "<<endl;
-    cin>>input;
+    getline(cin, input);
 
     cout<<input<<endl;
+    cout<<countWords(input);
     return 0;
 }
 //This function splits the words by the delimiters (period space, or comma) and returns the number of words.
@@ -22,5 +23,7 @@ int countWords(string str) {
     int count = 0;
     for(int i = 0; i < str.length(); i++) {
         //seperate words by delimiters " ,."
+        cout<<"test"<<endl;
     }
+    return 2;
 }
