@@ -21,9 +21,15 @@ int main() {
 int countWords(string str) {
     int numWords = 0;
     int count = 0;
+    string delimiter = " ,.";
     for(int i = 0; i < str.length(); i++) {
-        //seperate words by delimiters " ,."
-        cout<<"test"<<endl;
+        if(str[str.length()] == '.') {
+            numWords = numWords;
+        }
+        else if(str[i] == ',' || str[i] == '.' || str[i] == ' ') {
+            numWords++;
+        }
+        //find delimiters " ,." and increment for eaach delimiter
     }
-    return 2;
+    return numWords;
 }
