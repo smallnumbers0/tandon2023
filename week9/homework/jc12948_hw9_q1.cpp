@@ -8,14 +8,15 @@ int countWords(string str);
 void countLetters(string str);
 void toLowerCase (char& letter);
 
-char period = '.';
-char comma = ',';
-char space = ' ';
+const char PERIOD = '.';
+const char COMMA = ',';
+const char SPACE = ' ';
 
 int main() {
     string input;
     cout<<"Please enter a line of text: "<<endl;
     getline(cin, input);
+    
     for(int i = 0; i < input.length(); i++) {
         toLowerCase(input[i]);
     }
@@ -26,18 +27,20 @@ int main() {
     return 0;
 }
 
+//lowercase all letters of line
 void toLowerCase(char& letter) {
     if (letter >= 'A' && letter <= 'Z') {
         letter += 'a' - 'A';
     }
 }
 
+//count number of words based on puncuation
 int countWords(string str) {
     int numWords = 0;
     bool isWord;
     isWord = true; 
     for(int i = 0; i < str.length(); i++) { 
-        if(isWord == true && (str[i] == period || str[i] == comma || str[i] == space)) {
+        if(isWord == true && (str[i] == PERIOD || str[i] == COMMA || str[i] == SPACE)) {
             isWord = false;
         }
         else if(isWord == false && (str[i] >= 'a' && str[i] <= 'z')) {
@@ -45,9 +48,10 @@ int countWords(string str) {
             isWord = true;
         }  
     }
-    return numWords;
+    return numWords + 1;
 }
 
+//count number of letters using ASCII
 void countLetters(string str) {
     string alphabet[26];
     int letterCount[26];
@@ -56,7 +60,7 @@ void countLetters(string str) {
         letterCount[i] = 0;
     }
     for(int i = 0; i < str.length(); i++) {
-        if(str[i] != period && str[i] != comma && str[i] != space) {
+        if(str[i] != PERIOD && str[i] != COMMA && str[i] != SPACE) {
             letterCount[str[i] - 'a']++;
         }
     }
