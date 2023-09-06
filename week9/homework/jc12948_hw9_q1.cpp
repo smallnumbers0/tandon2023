@@ -5,36 +5,64 @@
 using namespace std;
 
 int countWords(string str);
-int countLetters(string str);
+void countLetters(string str);
+void toLowerCase (char& letter);
+
+char period = '.';
+char comma = ',';
+char space = ' ';
 
 int main() {
-
     string input;
     cout<<"Please enter a line of text: "<<endl;
     getline(cin, input);
+    for(int i = 0; i < input.length(); i++) {
+        toLowerCase(input[i]);
+    }
 
     cout<<input<<endl;
-    cout<<countWords(input)<<endl;
+    cout<<countWords(input)<<"\twords"<<endl;
+    countLetters(input);
     return 0;
 }
-//This function splits the words by the delimiters (period space, or comma) and returns the number of words.
+
+void toLowerCase(char& letter) {
+    if (letter >= 'A' && letter <= 'Z') {
+        letter += 'a' - 'A';
+    }
+}
+
 int countWords(string str) {
     int numWords = 0;
-    char period = '.';
-    char comma = ',';
-    char space = ' ';
     bool isWord;
     isWord = true; 
-    for(int i = 0; i < str.length(); i++) {
-        
+    for(int i = 0; i < str.length(); i++) { 
         if(isWord == true && (str[i] == period || str[i] == comma || str[i] == space)) {
             isWord = false;
         }
-        else if(isWord == false && ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))) {
+        else if(isWord == false && (str[i] >= 'a' && str[i] <= 'z')) {
             numWords++;
             isWord = true;
-        }
-        
+        }  
     }
     return numWords;
+}
+
+void countLetters(string str) {
+    string alphabet[26];
+    int letterCount[26];
+    for(int i = 0; i < 26; i++) {
+        alphabet[i] = 'a' + (char)i;
+        letterCount[i] = 0;
+    }
+    for(int i = 0; i < str.length(); i++) {
+        if(str[i] != period && str[i] != comma && str[i] != space) {
+            letterCount[str[i] - 'a']++;
+        }
+    }
+    for(int i = 0; i < 26; i++) {
+        if(letterCount[i] > 0) {
+            cout<<letterCount[i]<< "\t"<<alphabet[i]<<endl;
+        }
+    }
 }
