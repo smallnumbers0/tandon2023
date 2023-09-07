@@ -31,30 +31,30 @@ int main() {
 
     return 0;
 }
-void toLowerCase(char& letter) {
+void toLowerCase(char& letter) { //Not sure if tolower() is allowed yet.
     if (letter >= 'A' && letter <= 'Z') {
         letter += 'a' - 'A';
     }
 }
 
 bool isAnagram(string str1, string str2) {
-    string alphabet[26]; //initialize an array for 26 letters of alphabet
-    int lettersOne[26]; //initialize array for 26 integers
+    string alphabet[26]; //initalize the alphabet
+    int lettersOne[26]; 
     int lettersTwo[26];
     for(int i = 0; i < 26; i++) {
-        alphabet[i] = 'a' + (char)i; 
+        alphabet[i] = 'a' + (char)i; //store letters
         lettersOne[i] = 0; 
         lettersTwo[i] = 0;
     }
 
     for(int i = 0; i < str1.length(); i++) {
-            lettersOne[str1[i] - 'a']++; //take letter and subtract it by 'a' ex: d - a = 3 so add 1 to lettersOne[3]. d is in position 3 in alphabet
+            lettersOne[str1[i] - 'a']++; 
     }
     for(int i = 0; i < str2.length(); i++) {
             lettersTwo[str2[i] - 'a']++;
     }
     for(int i = 0; i < 26; i++) {
-        if(lettersOne[i] != lettersTwo[i]) { //check if the number of letters are the same for each letter
+        if(lettersOne[i] != lettersTwo[i]) { 
             return false;
         }
     }
