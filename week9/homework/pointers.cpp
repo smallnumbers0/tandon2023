@@ -6,6 +6,7 @@ void function1 (int* ptr)
     int* n = new int;
     *n = 10;
     ptr = n;
+    cout<<ptr<<endl;
     cout<<"Inside function1, my ptr value is: "<<*ptr<<endl; //10
 }
 
@@ -21,7 +22,7 @@ void function3 (int* ptr)
 {
     int* n = new int;
     *n = 30;
-    *ptr = *n;
+    *ptr = *n; //this modifies the value at the memory location that the pointer is at
     //or, simpler version for line 24:
     //*ptr = 30;
     cout<<"Inside function3, my ptr value is: "<<*ptr<<endl; //30
