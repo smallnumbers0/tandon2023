@@ -42,8 +42,8 @@ bool isAnagram(string str1, string str2) {
     int lettersOne[26]; //initialize array for 26 integers
     int lettersTwo[26];
     for(int i = 0; i < 26; i++) {
-        alphabet[i] = 'a' + (char)i; //store the letter of each alphabet to array
-        lettersOne[i] = 0; //set the integer of each array index to 0
+        alphabet[i] = 'a' + (char)i; 
+        lettersOne[i] = 0; 
         lettersTwo[i] = 0;
     }
 

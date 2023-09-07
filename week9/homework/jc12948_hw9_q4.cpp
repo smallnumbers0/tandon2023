@@ -7,14 +7,16 @@ using namespace std;
 void oddsKeepEvensFlip(int arr[], int arrSize);
 
 const int SIZE = 6;
+const int SIZE_A = 7;
 int main() {
     int arr[SIZE] = {5, 2, 11, 7, 6, 4};
-
+    int arr1[SIZE_A] = {11, 8, 55, 62, 101, 4, 7};
     oddsKeepEvensFlip(arr, SIZE);
+    oddsKeepEvensFlip(arr1, SIZE_A);
 
     return 0;
 }
-
+//split into odd and even arrays
 void oddsKeepEvensFlip(int arr[], int arrSize) {
     int oddArr[arrSize];
     int evenArr[arrSize];
@@ -31,17 +33,20 @@ void oddsKeepEvensFlip(int arr[], int arrSize) {
         }
     }
 
-    // for(int i = 0; i < evenCount/2 - 1; i++) {
+    // for(int i = 0; i < evenCount/2 - 1; i++) { //reorder evens
     //     int temp = evenArr[i];
     //     evenArr[i] = evenArr[evenCount];
     //     evenArr[evenCount] = temp;
     // }
 
+
+//concatenate arrays 
     for(int i = 0; i < oddCount; i++) {
         arr[i] = oddArr[i];
     }
     int count = evenCount;
-    for(int i = oddCount; i < oddCount + count; i++) {
+
+    for(int i = oddCount; i < oddCount + count; i++) { //add even numbers in reverse
         arr[i] = evenArr[evenCount-1];
         evenCount--;
     }
