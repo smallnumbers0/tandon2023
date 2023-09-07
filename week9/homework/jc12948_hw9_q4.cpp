@@ -31,16 +31,19 @@ void oddsKeepEvensFlip(int arr[], int arrSize) {
         }
     }
 
-    for(int i = 0; i < evenCount/2 - 1; i++) {
-        int temp = evenArr[i];
-        evenArr[i] = evenArr[evenCount];
-        evenArr[evenCount] = temp;
-    }
+    // for(int i = 0; i < evenCount/2 - 1; i++) {
+    //     int temp = evenArr[i];
+    //     evenArr[i] = evenArr[evenCount];
+    //     evenArr[evenCount] = temp;
+    // }
+
     for(int i = 0; i < oddCount; i++) {
         arr[i] = oddArr[i];
     }
-    for(int i = oddCount; i < oddCount + evenCount -1; i++) {
-        arr[i] = evenArr[i];
+    int count = evenCount;
+    for(int i = oddCount; i < oddCount + count; i++) {
+        arr[i] = evenArr[evenCount-1];
+        evenCount--;
     }
 
     for(int i = 0; i < arrSize; i++) {
