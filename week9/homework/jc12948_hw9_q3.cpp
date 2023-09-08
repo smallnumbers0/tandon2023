@@ -19,26 +19,22 @@ int main() {
     int outPosArrSize;
     int* newArr1;
     int* newArr2;  
-    int* newArr3;  
-    int* newArr4;  
+    int* newArr3 = nullptr;  
+    int* newArr4 = nullptr;  
 
     newArr1 = getPosNums1(arr, SIZE, outPosArrSize);
-    cout<<"Base address: "<<newArr1<<endl;
     cout<<"Updated Array Size: "<<outPosArrSize<<endl;
     printArray(newArr1, outPosArrSize);
 
-    newArr2 = getPosNums1(arr, SIZE, outPosArrSize);
-    cout<<"Base address: "<<newArr2<<endl;
+    newArr2 = getPosNums2(arr, SIZE, &outPosArrSize);
     cout<<"Updated Array Size: "<<outPosArrSize<<endl;
     printArray(newArr2, outPosArrSize);
 
-    newArr3 = getPosNums1(arr, SIZE, outPosArrSize);
-    cout<<"Base address: "<<newArr3<<endl;
+    getPosNums3(arr, SIZE, newArr3, outPosArrSize);
     cout<<"Updated Array Size: "<<outPosArrSize<<endl;
     printArray(newArr3, outPosArrSize);
 
-    newArr4 = getPosNums1(arr, SIZE, outPosArrSize);
-    cout<<"Base address: "<<newArr4<<endl;
+    getPosNums4(arr, SIZE, &newArr4, &outPosArrSize);
     cout<<"Updated Array Size: "<<outPosArrSize<<endl;
     printArray(newArr4, outPosArrSize);
 
