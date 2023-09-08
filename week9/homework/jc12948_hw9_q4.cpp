@@ -3,7 +3,6 @@
 
 #include <iostream>
 using namespace std;
-
 void oddsKeepEvensFlip(int arr[], int arrSize);
 
 const int SIZE = 6;
@@ -13,7 +12,6 @@ int main() {
     int arr1[SIZE_A] = {11, 8, 55, 62, 101, 4, 7};
     oddsKeepEvensFlip(arr, SIZE);
     oddsKeepEvensFlip(arr1, SIZE_A);
-
     return 0;
 }
 //split into odd and even arrays
@@ -32,27 +30,22 @@ void oddsKeepEvensFlip(int arr[], int arrSize) {
             oddCount++;
         }
     }
-
-    // for(int i = 0; i < evenCount/2 - 1; i++) { //reorder evens
-    //     int temp = evenArr[i];
-    //     evenArr[i] = evenArr[evenCount];
-    //     evenArr[evenCount] = temp;
-    // }
-
-
 //concatenate arrays 
     for(int i = 0; i < oddCount; i++) {
         arr[i] = oddArr[i];
     }
     int count = evenCount;
 
-    for(int i = oddCount; i < oddCount + count; i++) { //add even numbers in reverse
-        arr[i] = evenArr[evenCount-1];
-        evenCount--;
+    for(int i = oddCount; i < oddCount + evenCount; i++) { //add even numbers in reverse
+        arr[i] = evenArr[count - 1];
+        count--;
     }
-
+    cout<<"{ ";
     for(int i = 0; i < arrSize; i++) {
-        cout<<arr[i]<<' ';
+        if(i == arrSize - 1) {
+            cout<<arr[i];
+        }
+        else cout<<arr[i]<<", ";
     }
-    cout<<endl;
+    cout<<" }"<<endl;
 }
