@@ -15,8 +15,8 @@ int main() {
     string *outArr;
     cout<<"Please enter a sentence to be converted into an array of words: "<<endl;
     getline(cin, sentence);
-
     outArr = createWordsArray(sentence, outWordsArrSize);
+    //making a print function for this later
     cout<<"[";
     for(int i = 0; i < outWordsArrSize; i++) {
         if(i == outWordsArrSize-1) {
@@ -34,7 +34,7 @@ int main() {
 
 string* createWordsArray(string sentence, int &outWordsArrSize) {
     int size = 1;
-    //This loop gets the size of array
+    //This loop gets the total size of array by counting spaces between words O(n)
     for(int i = 0; i < sentence.length(); i++) {
         if(sentence[i] == ' ') {
             size++;
@@ -43,6 +43,7 @@ string* createWordsArray(string sentence, int &outWordsArrSize) {
     string *arr = new string[size];
     int count = 0;
     int j = 0;
+    //this loop takes each word and store it in an index of the array O(n)
     for(int i = 0; i < sentence.length(); i++) {
         if(sentence[i] == ' ') {
             arr[j] = sentence.substr(count, i-count);
@@ -50,7 +51,8 @@ string* createWordsArray(string sentence, int &outWordsArrSize) {
             count = i + 1;
             j++;
         }
-        if(i == sentence.length()-1) {
+    //this if statement just checks for the last word since there will be no ' ' after. Dont want to leave this word all alone right?
+        if(i == sentence.length()-1) { 
             arr[j] = sentence.substr(count, i-count + 1);
         }
     }
