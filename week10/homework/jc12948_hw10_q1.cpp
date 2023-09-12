@@ -1,0 +1,60 @@
+//This program takes in a sentence and produces an array of words.
+//It also updates the array size. 
+//Jacky Choi NYU Tandon Summer 2023
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+string* createWordsArray(string sentence, int &outWordsArrSize);
+
+int main() {
+    string sentence;
+    int outWordsArrSize;
+    string *outArr;
+    cout<<"Please enter a sentence to be converted into an array of words: "<<endl;
+    getline(cin, sentence);
+
+    outArr = createWordsArray(sentence, outWordsArrSize);
+    cout<<"[";
+    for(int i = 0; i < outWordsArrSize; i++) {
+        if(i == outWordsArrSize-1) {
+            cout<<"\""<<outArr[i]<<"\""<<"]"<<endl;
+        }
+        else {
+            cout<<"\""<<outArr[i]<<"\""<<", ";
+        }
+    }
+    
+    cout<<"outWordsArrSize: "<<outWordsArrSize<<endl;
+
+    return 0;
+}
+
+string* createWordsArray(string sentence, int &outWordsArrSize) {
+    int size = 1;
+    //This loop gets the size of array
+    for(int i = 0; i < sentence.length(); i++) {
+        if(sentence[i] == ' ') {
+            size++;
+        }
+    }
+    string *arr = new string[size];
+    int count = 0;
+    int j = 0;
+    for(int i = 0; i < sentence.length(); i++) {
+        if(sentence[i] == ' ') {
+            arr[j] = sentence.substr(count, i-count);
+            cout<<arr[j]<<endl;
+            count = i + 1;
+            j++;
+        }
+        if(i == sentence.length()-1) {
+            arr[j] = sentence.substr(count, i-count + 1);
+        }
+    }
+    cout<<size<<endl;
+    outWordsArrSize = size;
+    return arr;
+}
