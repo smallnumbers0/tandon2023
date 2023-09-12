@@ -16,10 +16,15 @@ int main() {
     cout<<"Please enter a sentence to be converted into an array of words: "<<endl;
     getline(cin, sentence);
     outArr = createWordsArray(sentence, outWordsArrSize);
-    //making a print function for this later
+    //making a print function for this later if i have time
     cout<<"[";
+    int count = 0;
     for(int i = 0; i < outWordsArrSize; i++) {
-        if(i == outWordsArrSize-1) {
+        if(outArr[i] == "") {  //In case of continouse space "like         this"
+            count++;
+            continue;
+        }
+        else if(i == outWordsArrSize-1) {
             cout<<"\""<<outArr[i]<<"\""<<"]"<<endl;
         }
         else {
@@ -27,7 +32,7 @@ int main() {
         }
     }
     
-    cout<<"outWordsArrSize: "<<outWordsArrSize<<endl;
+    cout<<"outWordsArrSize: "<<outWordsArrSize - count<<endl;
 
     return 0;
 }
@@ -51,12 +56,11 @@ string* createWordsArray(string sentence, int &outWordsArrSize) {
             count = i + 1;
             j++;
         }
-    //this if statement just checks for the last word since there will be no ' ' after. Dont want to leave this word all alone right?
+    //this if statement just checks for the last word since there will be no ' ' after it. Dont want to leave this word all alone isn't that right?
         if(i == sentence.length()-1) { 
             arr[j] = sentence.substr(count, i-count + 1);
         }
     }
-    cout<<size<<endl;
     outWordsArrSize = size;
     return arr;
 }
