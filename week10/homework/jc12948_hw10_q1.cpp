@@ -17,7 +17,6 @@ int main() {
     outArr = createWordsArray(sentence, outWordsArrSize);
     //Making a print function for this later if I have time
     cout<<"[";
-    int count = 0;
     for(int i = 0; i < outWordsArrSize; i++) {
         if(i == outWordsArrSize-1) {
             cout<<"\""<<outArr[i]<<"\""<<"]"<<endl;
@@ -27,7 +26,7 @@ int main() {
         }
     }
     
-    cout<<"outWordsArrSize: "<<outWordsArrSize - count<<endl;
+    cout<<"outWordsArrSize: "<<outWordsArrSize<<endl;
     return 0;
 }
 
