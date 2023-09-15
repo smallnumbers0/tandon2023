@@ -30,6 +30,7 @@ void main1() { //This function does not use vector
     //use a ptr to create dynamic memory heap
     //we increment size for every input
     //an input of -1 stops sequence
+    cout<<"Please enter a sequence of integers and -1 to stop: "<<endl;
     int input = 0;
     while(input != -1) {
         cin>>input;
@@ -40,8 +41,24 @@ void main1() { //This function does not use vector
         size++;
     }
 
+    cout<<"Please enter an integer to find its location."<<endl;
+    cin>>input;
+    bool found = false;
     for(int i = 0; i < size; i++) {
-        cout<<arr[i]<<endl;
+        if(arr[i] == input) {
+            found = true;
+        }
     }
+    if(found == true) { //set to true to start printing where nums are found
+        cout<<input<<" is found in line(s): ";
+    }
+    for(int i = 0; i < size; i++) {
+        if(arr[i] == input) {
+            cout<<i+1<<" ";
+        }
+    }
+    cout<<endl;
 
+    delete[] arr;
+    arr = NULL;
 }
