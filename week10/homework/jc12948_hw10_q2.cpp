@@ -18,7 +18,7 @@ int* findMissing(int arr[], int n, int& resArrSize);
 const int ARR_SIZE = 6;
 int main() {
     int newSize = 0;
-    int numArr[ARR_SIZE] = {1, 5, 4, 5, 4, 3};
+    int numArr[ARR_SIZE] = {3, 3, 3, 0, 6, 4};
 
     cout<<"Before: "<<endl;    
     cout<<"[";
@@ -36,28 +36,32 @@ int main() {
         cout<<newArr[i]<<endl;
     }
     delete[] newArr;
+    newArr = NULL;
+
     return 0;
 }
 
 int* findMissing(int arr[], int n, int& resArrSize) {
-    int* orderedCount = new int[n];
-    for(int i = 1; i <= n; i++) {
-        orderedCount[i] = i;
+    int orderedCount[n + 1];
+    for(int i = 0; i < n; i++) {
+        orderedCount[i] = 0;
     }
 
-    for(int i = 1; i <= n; i++) {
-        if(arr[i] != i) {
+    for(int i = 0; i < n; i++) {
+        orderedCount[arr[i]]++;
+    }
+    for(int i = 0; i < n; i++) {
+        if(orderedCount[i] == 0) {
             resArrSize++;
         }
     }
     int *missingNums = new int[resArrSize];
     int count = 0;
-     for(int i = 1; i <= resArrSize; i++) {
-        if(arr[i] != i) {
-            missingNums[count] = arr[i];
+    for(int i = 0; i < n; i++) {
+        if(orderedCount[i] == 0) {
+            missingNums[count] = i;
             count++;
         }
     }
-    
     return missingNums;
 }
