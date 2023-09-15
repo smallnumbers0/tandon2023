@@ -22,10 +22,10 @@ int main() {
     }
 
     int* newArr = findMissing(numArr, ARR_SIZE, newSize);
-    for(int i = 0; i < newSize; i++) {
+    for(int i = 0; i < newSize; i++) { //print new array with new size;
         cout<<newArr[i]<<endl;
     }
-    delete[] newArr;
+    delete[] newArr; //clean up
     newArr = NULL;
 
     return 0;
@@ -33,8 +33,8 @@ int main() {
 
 int* findMissing(int arr[], int n, int& resArrSize) {
     int orderedCount[n + 1];
-    for(int i = 0; i <= n; i++) {
-        orderedCount[i] = 0;
+    for(int i = 0; i <= n; i++) { //make sure it goes through full range 0 - n inclusive by adding >=
+        orderedCount[i] = 0; //initialize an array of counters
     }
 
     for(int i = 0; i < n; i++) {
@@ -42,7 +42,7 @@ int* findMissing(int arr[], int n, int& resArrSize) {
     }
     for(int i = 0; i <= n; i++) {
         if(orderedCount[i] == 0) {
-            resArrSize++;
+            resArrSize++; //count the new size based on how many are missing.
         }
     }
     int *missingNums = new int[resArrSize];
