@@ -70,7 +70,24 @@ void main2() {
         nums.push_back(input);
     }
 
+    cout<<"Please enter an integer to find its location."<<endl;
+    cin>>input;
+    bool found = false;
     for(int i = 0; i < nums.size(); i++) {
-        cout<<nums[i]<<endl;
+        if(nums[i] == input) {
+            found = true;
+        }
     }
+    if(found == true) { //set to true to start printing where nums are found
+        cout<<input<<" is found in line(s): ";
+    }
+    else {
+        cout<<input<<" is not found anywhere in the sequence.";
+    }
+    for(int i = 0; i < nums.size(); i++) {
+        if(nums[i] == input) {
+            cout<<i+1<<" ";
+        }
+    }
+    cout<<endl;
 }
