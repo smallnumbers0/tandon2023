@@ -10,3 +10,54 @@
 // Implementation requirements:
 // 1. Your function should run in linear time. That is, it should run in 𝜃(𝑛).
 // 2. Write a main() program that tests this function..
+
+#include <iostream>
+using namespace std;
+
+int* findMissing(int arr[], int n, int& resArrSize);
+const int ARR_SIZE = 6;
+int main() {
+    int newSize = 0;
+    int numArr[ARR_SIZE] = {1, 5, 4, 5, 4, 3};
+
+    cout<<"Before: "<<endl;    
+    cout<<"[";
+    for(int i = 0; i < ARR_SIZE; i++) {
+        if(i == ARR_SIZE - 1) {
+            cout<<numArr[i]<<"]"<<endl;
+        }
+        else {
+            cout<<numArr[i]<<", ";
+        }
+    }
+
+    int* newArr = findMissing(numArr, ARR_SIZE, newSize);
+    for(int i = 0; i < newSize; i++) {
+        cout<<newArr[i]<<endl;
+    }
+    delete[] newArr;
+    return 0;
+}
+
+int* findMissing(int arr[], int n, int& resArrSize) {
+    int* orderedCount = new int[n];
+    for(int i = 1; i <= n; i++) {
+        orderedCount[i] = i;
+    }
+
+    for(int i = 1; i <= n; i++) {
+        if(arr[i] != i) {
+            resArrSize++;
+        }
+    }
+    int *missingNums = new int[resArrSize];
+    int count = 0;
+     for(int i = 1; i <= resArrSize; i++) {
+        if(arr[i] != i) {
+            missingNums[count] = arr[i];
+            count++;
+        }
+    }
+    
+    return missingNums;
+}
