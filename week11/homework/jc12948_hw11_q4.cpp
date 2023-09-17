@@ -1,26 +1,25 @@
 #include <iostream>
 using namespace std;
 
-int jumpIt(int arr[], int start, int size);
+int jumpIt(int arr[], int size);
 
 int main() {
-    const int size = 6;
-    int start = 0;
-    int arr[size] = {0, 3, 80, 6, 57, 10};
-    cout<<jumpIt(arr, start, size)<<endl;
+    const int size = 8;
+    int arr[size] = {0, 3, 1, 6, 4, 10, 10, 2};
+    cout<<jumpIt(arr, size)<<endl;
     return 0;
 }
 
-int jumpIt(int arr[], int start, int size) {
-    if(start == size) {
-        return 0;
+int jumpIt(int arr[], int size) {
+    if(size <= 3) {
+        return arr[size-1];
     }
     else {
-
-        int next = jumpIt(arr, start+1, size);
-        if(next <= arr[start+1]) {
-            return next;
+        int adjacentOne = jumpIt(arr, size - 1);
+        int adjacentTwo = jumpIt(arr, size - 2);
+        if( adjacentOne > adjacentTwo) {
+            return adjacentTwo + arr[size-1];
         }
-        return next + jumpIt(arr, start+1, size);
+        return arr[size-1] + jumpIt(arr, size-1);
     }
 }
