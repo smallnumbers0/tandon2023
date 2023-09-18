@@ -5,13 +5,13 @@ int jumpIt(int arr[], int size);
 
 int main() {
     const int size = 8;
-    int arr[size] = {0, 3, 1, 6, 4, 10, 10, 2};
+    int arr[size] = {0, 3, 1, 1, 4, 10, 10, 2};
     cout<<jumpIt(arr, size)<<endl;
     return 0;
 }
 
 int jumpIt(int arr[], int size) {
-    if(size <= 3) {
+    if(size <= 2) {
         return arr[size-1];
     }
     else {
