@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+int findMax(vector <int> studentGrades);
 
 int main() {
     int id;
@@ -16,12 +17,33 @@ int main() {
         cin>>grade;
         idNums.push_back(id);
         studGrades.push_back(grade);
-        }
-
-    for(int i = 0; i < idNums.size(); i++) {
-        cout<<idNums[i]<<" "<<studGrades[i]<<endl;
     }
  
+    // int max = studGrades[0];
+    // for(int i = 1; i < studGrades.size(); i++) {
+    //     if(max < studGrades[i]) {
+    //         max = studGrades[i];
+    //     }
+    // }
+    int max = findMax(studGrades);
+
+    cout<<"The students with the highest grades are: "<<endl;
+    for(int i = 0; i < studGrades[i]; i++) {
+        if(max == studGrades[i]) {
+            cout<<idNums[i]<<" "<<studGrades[i]<<endl;
+        }
+    }
+
 
     return 0;
+}
+
+int findMax(vector <int> studentGrades) {
+    int max = studentGrades[0];
+        for(int i = 1; i < studentGrades.size(); i++) {
+            if(max < studentGrades[i]) {
+                max = studentGrades[i];
+        }
+    }
+    return max;
 }
