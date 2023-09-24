@@ -21,7 +21,7 @@ bool isSorted(int arr[], int arrSize);
 
 int main() {
     const int size = 4;
-    int arr[size] = {0, 1, 2, 3};
+    int arr[size] = {0, 2, 2, 4};
     cout<<sumOfSquares(arr, size)<<endl;
     if(isSorted(arr, size)) {
         cout<<"True"<<endl;
@@ -53,6 +53,6 @@ bool isSorted(int arr[], int arrSize) {
         int previous = arr[arrSize - 2];
         int present = arr[arrSize - 1];
        
-        return (previous == present - 1) && isSorted(arr, arrSize -1);
+        return (previous <= present) && isSorted(arr, arrSize -1);
     }
 }

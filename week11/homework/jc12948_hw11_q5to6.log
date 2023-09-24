@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.8)  15 SEP 2023 20:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.8)  24 SEP 2023 08:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -242,7 +242,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--20
 
 [1
 
-{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}] (./jc12948_hw11_q5to6.aux) ) 
+{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
+
+ []
+
+[2] (./jc12948_hw11_q5to6.aux) ) 
 Here is how much of TeX's memory you used:
  3005 strings out of 476025
  44604 string characters out of 5790018
@@ -252,10 +262,10 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  56i,6n,62p,298b,222s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on jc12948_hw11_q5to6.pdf (1 page, 48458 bytes).
+Output written on jc12948_hw11_q5to6.pdf (2 pages, 49126 bytes).
 PDF statistics:
- 29 PDF objects out of 1000 (max. 8388607)
- 17 compressed objects within 1 object stream
+ 32 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

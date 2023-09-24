@@ -8,6 +8,8 @@ void printOppositeTriangles(int n);
 void printRuler(int n);
 int main() {
     int n = 4;
+    printTriangle(4);
+    printOppositeTriangles(4);
     printRuler(4);
     return 0;
 }
@@ -59,7 +61,7 @@ void printRuler(int n) { // n = 4
     cout<<endl;
     printRuler(n-1);
 }
-/*  Is this recrusive tree is correct for printRuler(4)?
+/* 
                        n = 4
                 n-1          n-1
              n-2 n-2        n-2 n-2
