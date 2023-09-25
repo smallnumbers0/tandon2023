@@ -17,10 +17,62 @@ Summer 2023 Name: Jacky Choi}
 
 \noindent \textbf{Question 5}\\\\
 \textbf{Exercise  a.}\\
-
+Use mathematical induction to prove that for any positive integer n, 3 divide $n^3$ + 2n\\\\
+BC: $n = 1$ : $1^3 + 2(1) = 3 = 3$\\
+IH: Assume 3 divides $k^3 + 2(k)$ $3m = k^3 + 2(k)$\\
+Show that 3 divides $(k+1)^3 + 2(k+1)$\\
+Expanding gives us $k^3 + 2k + 3k^2 + 3k + 3$\\
+Using Inductive Hypothesis gives us $3m + 3k^2 + 3k + 3$\\
+Simplifying to $3(m + k^2 + k + 1)$\\
+Since $(m + k^2 + k + 1)$ is an integer, we have shown that 3 divides $n^3+ 2n$\\\\
+\textbf{Exercise  b.}\\
+Use strong induction to prove that any positive integer $n (n\geq 2)$ can be written as a
+product of primes\\\\
+BC: n = 2. 2 is a prime number\\
+IH: For $k \geq 2$. Assume that k can be represented as a product of primes.\\
+Show that $k+1$ can be represented as a product of primes.\\
+If $k+1$ is not prime, it is composite and can be written as a product of 2 primes\\
+$2 \leq a,b \leq k+1$ where a and b are integers.\\
+$\therefore$ Any positive integer $n \geq 2$ can be written as a product of primes.\\
 \newpage
 
 \noindent \textbf{Question 6}\\\\
-\textbf{Exercise  a.}\\
+\textbf{Exercise  7.4.1.a.}\\
+$P(3)$ $1^2 + 2^2 + 3^2 = 3((3 + 1)(2 * 3 + 1))/6$\\\\
+\textbf{Exercise  7.4.1.b.}\\
+$P(k)$ $= (k(k + 1)(2 * k + 1))/6$\\\\
+\textbf{Exercise  7.4.1.c.}\\
+$P(k+1)$ $= (k+1(k + 2)(2k + 3))/6$\\\\
+\textbf{Exercise  7.4.1.d.}\\
+We must prove that P(1) is true\\\\
+\textbf{Exercise  7.4.1.e.}\\
+We must assume P(k) to be true and show that P(k+1) is true\\\\
+\textbf{Exercise  7.4.1.f.}\\
+The inductive hypothesis is P(k)\\\\
+\textbf{Exercise  7.4.1.g.}\\
+BC: $n = 1$ $\sum_{j=1}^{n} j^2 = \frac{n(n+1)(2n+1)}{6}$\\
+$\sum_{j=1}^{1} 1^2 = \frac{1(1+1)(2(1)+1)}{6}$ is 1 = 1\\
+IH: Assume P(k) $\sum_{j=1}^{k} j^2 = \frac{k(k+1)(2k+1)}{6}$ is true so P(k+1) is also true\\
+$\sum_{j=1}^{k+1} j^2 = \sum_{j=1}^{k} j^2 + (k+1)^2$\\
+Since $\sum_{j=1}^{k} j^2 = \frac{k(k+1)(2k+1)}{6}$ we can use the inductive hypothesis\\
+Now we have $\frac{k(k+1)(2k+1)}{6} + (k+1)^2$\\
+By Simplifying we will have $\frac{(k+1)(k+2)(2k+3)}{6}$\\
+$\therefore$ P(k+1) is true\\\\
+\textbf{Exercise  7.4.3c}\\\\
+For $n\geq 1$ Prove $\sum_{j=1}^{n} \frac{1}{j^2} \leq 2-\frac{1}{n}$\\
+BC: n = 1 $\frac{1}{1^2} = 2 - \frac{1}{1}$\\
+IH: Assume $\sum_{j=1}^{k} \frac{1}{k^2} \leq 2 - \frac{1}{k}$\\
+Show $\sum_{j=1}^{k+1} \frac{1}{(k+1)^2} \leq 2 - \frac{1}{k+1} + \frac{1}{(k+1)^2}$\\
+$2 - \frac{1}{k+1} + \frac{1}{(k+1)^2}$\\
+$2 - \frac{1}{k+1} + \frac{1}{k(k+1)}$\\
+$2 - \frac{k}{k(k+1)} = 2 - \frac{1}{k+1}$\\
+\textbf{Exercise  7.5.1a}\\\\
+For $n > 0$ 4 evenly divides $3^{2n}-1$\\
+BC: n = 1. $3^{2(1)}-1 = 8$ 8 is divisible by 4\\
+IH: $p(k) = 3^{2k}-1$ $4m + 1= 3^{2k}$\\
+Show $3^{2(k+1)}-1$ is divisible by 4\\
+$3^(2k) * 3^2 - 1$\\
+Using the inductive hypothesis $(4m+1) * 3^2 - 1$\\
+$4(9m + 2)$ where 9m + 2 is an integer proving it is divisible by 4.
 
 \end{document}
