@@ -10,12 +10,12 @@ void splitParity(int arr[], int arrSize);
 
 
 int main() {
-    int arr1[10] = {1,2,3,4,5};
-    int arr1Size = 5;
+    int arr1[10] = {1, 15, 2, -20, 99, 77};
+    int arr1Size = 6;
     int arr2[10] = {21, 12, 6, 7, 14};
     int arr2Size = 5;
-    int arr3[10] = {3, 6, 4, 1, 12};
-    int arr3Size = 5;
+    int arr3[10] = {1, 15, 2, -20, 99, 77};
+    int arr3Size = 6;
     
     reverseArray(arr1, arr1Size);
     printArray(arr1, arr1Size);
