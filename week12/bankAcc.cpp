@@ -24,7 +24,7 @@ class BankAccount {
 };       
 
 int main() {
-    BankAccount account1(100, 2.3), account2;
+    BankAccount account1(120, 5.0), account2;
     cout<<"account1 initialized as follows:\n";
     account1.output(cout);
     cout<<"account2 initialized as follows:\n";
@@ -56,9 +56,9 @@ BankAccount::BankAccount(int dollars, double rate) {
     if((dollars < 0) || (rate < 0)) {
         cout<< "Illegal values for money or interest rate.\n";
         exit(1);
-        balance = dollars;
-        interest_rate = rate;
     }
+    balance = dollars;
+    interest_rate = rate;
 }
 
 BankAccount::BankAccount() : balance(0), interest_rate(0.0) {
