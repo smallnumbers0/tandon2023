@@ -1,27 +1,44 @@
 #include <iostream>
 using namespace std;
 
-class Money {
-public:
-    friend Money operator +(const Money& amount1, const Money& amount2);
-    friend Money operator -(const Money& amount1, const Money& amount2);
-    friend Money operator -(const Money& amount);
-    friend bool operator ==(const Money& amount1, const Money& amount2);
-    friend bool operator <(const Money& amount1, const Money& amount2);
-
-    Money(long dollars, int cents);
-    Money(long dollars);
-    Money(); 
-
-    double get_value() const;
-
-    friend istream& operator >>(istream& ins, Money& amount);
-
-    friend ostream& operator <<(ostream& outs, const Money& amount);
-
-private:
-    long all_cents;
+class Check {
+    public:
+        int get_number();
+        Money get_amount();
+        bool get_cashed();
+        void set_number(int number);
+        void set_amount(const Money& amount);
+        void set_cashed(bool is_cashed);
+        Check(int number, long dollars, int cents);
+    private: 
+        int number;
+        Money amount;
+        bool cashed;
 };
+
+class Money {
+    public:
+        friend Money operator +(const Money& amount1, const Money& amount2);
+        friend Money operator -(const Money& amount1, const Money& amount2);
+        friend Money operator -(const Money& amount);
+        friend bool operator ==(const Money& amount1, const Money& amount2);
+        friend bool operator <(const Money& amount1, const Money& amount2);
+
+        Money(long dollars, int cents);
+        Money(long dollars);
+        Money(); 
+
+        double get_value() const;
+
+        friend istream& operator >>(istream& ins, Money& amount);
+
+        friend ostream& operator <<(ostream& outs, const Money& amount);
+
+    private:
+        long all_cents;
+};
+
+
 
 int main() {
     Money amount[5], max;
