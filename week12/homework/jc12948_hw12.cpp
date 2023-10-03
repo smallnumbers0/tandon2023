@@ -1,21 +1,6 @@
 #include <iostream>
 using namespace std;
 
-class Check {
-    public:
-        int get_number();
-        Money get_amount();
-        bool get_cashed();
-        void set_number(int number);
-        void set_amount(const Money& amount);
-        void set_cashed(bool is_cashed);
-        Check(int number, long dollars, int cents);
-    private: 
-        int number;
-        Money amount;
-        bool cashed;
-};
-
 class Money {
     public:
         friend Money operator +(const Money& amount1, const Money& amount2);
@@ -38,31 +23,47 @@ class Money {
         long all_cents;
 };
 
+class Check {
+    public:
+    int get_number();
+    Money get_amount();
+    bool get_cashed();
+    void set_number(int num);
+    void set_amount(const Money& amount);
+    void set_cashed(bool cashed);
+    Check(int num, long dollars, int cents, bool cashed);
+
+    Check(int num, long dollars, bool cashed);
+
+    Check();
+    friend istream& operator>>(istream& input, Check& check) {
+        input >> check.number >> check.amount >> check.is_cashed;
+        return input;
+    }
+
+private:
+    int number;
+    Money amount;
+    bool is_cashed;
+
+};
+
 
 
 int main() {
-    Money amount[5], max;
-    
-    cout<<"Enter 5 amounts of money: \n";
-    cin >> amount[0];
-    max = amount[0];
-    for(int i = 1; i < 5; i++) {
-        cin >>amount[i];
-        if(max < amount[i]) {
-            max = amount[i];
-        }
+    int numChecks;
+    cout<<"How many checks do you have?: "<<endl;
+    cin>>numChecks;
+    cout<<"For each check, please enter check number, check amount, 1 if cashed and 0 if not."<<endl;
+    cout<<"Example: 89 $50.99 1 "<<endl;
+
+    Check* checks = new Check[numChecks];
+
+    for(int i = 0; i < numChecks; i++) {
+        cin >> checks[i];
     }
 
-    Money difference[5];
-    for(int i = 0; i < 5; i++) {
-        difference[i] = max - amount[i];
-
-        cout<<"The highest ammount is "<<max<<endl;
-        cout<<"The amounts and their\n"<<"differences from the largest are:\n";
-    }
-    for(int i = 0; i < 5; i++) {
-        cout<<amount[i]<<" off by "<<difference[i]<<endl;
-    }
+    delete[] checks;
     return 0;
 }
 
@@ -172,3 +173,28 @@ ostream& operator <<(ostream& outs, const Money& amount) {
 
     return outs;
 }
+
+int Check::get_number() {
+    return number;
+}
+Money Check::get_amount() {
+    return amount;
+}
+bool Check::get_cashed() {
+    return is_cashed;
+}
+void Check::set_number(int num) {
+    this->number = num;
+}
+void Check::set_amount(const Money& amount) {
+    this->amount = amount;
+}
+void Check::set_cashed(bool cashed) {
+    this->is_cashed = cashed;
+}
+
+Check::Check(int num, long dollars, int cents, bool cashed) : number(num), amount(dollars, cents), is_cashed(cashed) {};
+
+Check::Check(int num, long dollars, bool cashed) : number(num), amount(dollars, 0), is_cashed(cashed) {};
+
+Check::Check() : number(0), amount(0, 0), is_cashed(false) {};
