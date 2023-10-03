@@ -36,8 +36,20 @@ class Check {
     Check(int num, long dollars, bool cashed);
 
     Check();
+
     friend istream& operator>>(istream& input, Check& check) {
-        input >> check.number >> check.amount >> check.is_cashed;
+        int is_cashed;
+        input >> check.number >> check.amount >> is_cashed;
+        if(is_cashed == 1) {
+            check.is_cashed == true;
+        }
+        else if(is_cashed == 0) {
+            check.is_cashed == false;
+        }
+        else {
+            cout<<"Error. Could not determine if check is to be cashed. Entered something other than 1 or 0."<<endl;
+            exit(1);
+        }
         return input;
     }
 
@@ -51,18 +63,41 @@ private:
 
 
 int main() {
-    int numChecks;
+    int num_checks;
+    int num_deposits;
     cout<<"How many checks do you have?: "<<endl;
-    cin>>numChecks;
+    cin>>num_checks;
+
     cout<<"For each check, please enter check number, check amount, 1 if cashed and 0 if not."<<endl;
-    cout<<"Example: 89 $50.99 1 "<<endl;
+    cout<<"Examples: 89 $50.99 1 or 56 $09.22 0"<<endl;
 
-    Check* checks = new Check[numChecks];
+    Check* checks = new Check[num_checks];
 
-    for(int i = 0; i < numChecks; i++) {
+    for(int i = 0; i < num_checks; i++) {
         cin >> checks[i];
     }
+    cout<<"How many deposits do you have?: "<<endl;
+    cin>>num_deposits;
+    int* deposits = new int[num_deposits];
+    cout<<"Please enter your deposits in the following format: ($00.00): "<<endl;
+    for(int i = 0; i < num_deposits; i++) {
+        cin>> deposits[i];
+    }
 
+    //total depsotis
+    Money new_balance;
+    Money total_deposits;
+    //totcal checks cashed
+    Money amount_cashed_checks;
+    //total checks uncashed
+    Money amount_uncashed_checks;
+    //total balance
+    Money previous_balance;
+    cout<<"Please enter previous balance: "<<endl;
+    cin>>previous_balance;
+    
+
+    delete[] deposits;
     delete[] checks;
     return 0;
 }
@@ -80,13 +115,9 @@ Money::Money(long dollars, int cents) {
     all_cents = dollars * 100 + cents;
 }
 
-Money::Money(long dollars) : all_cents(dollars * 100) {
-    //Body intentionally left blank.
-}
+Money::Money(long dollars) : all_cents(dollars * 100) {}
 
-Money::Money() : all_cents(0) {
-    //Body intentionally left blank.
-}
+Money::Money() : all_cents(0) {}
 
 int digit_to_int(char c);
 //Used in the definition of the overloaded input operator >>.
@@ -117,6 +148,10 @@ bool operator ==(const Money& amount1, const Money& amount2) {
 
 bool operator <(const Money& amount1, const Money& amount2) {
     return (amount1.all_cents < amount2.all_cents);
+}
+
+double Money::get_value() const {
+    return all_cents * 0.01;
 }
 
 istream& operator >>(istream& ins, Money& amount) {
