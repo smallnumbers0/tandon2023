@@ -16,7 +16,6 @@ class Money {
         double get_value() const;
 
         friend istream& operator >>(istream& ins, Money& amount);
-
         friend ostream& operator <<(ostream& outs, const Money& amount);
         Money get_amount_cashed_checks(const Check checks[], int num_checks);
         Money get_amount_uncashed_checks(const Check checks[], int num_checks);
@@ -55,6 +54,8 @@ class Check {
             }
             return input;
         }
+        friend istream& operator >>(istream& ins, Check& check);
+        friend ostream& operator <<(ostream& outs, const Check& check);
 
     private:
         int number;
@@ -112,7 +113,19 @@ int main() {
     cout<<"Your new balance is: "<<new_balance<<endl;
     cout<<"The bank's new balance is: "<<new_bank_balance<<endl;
     cout<<"The difference between your balance and the bank is: "<<new_balance - new_bank_balance<<endl;
-    
+    cout<<"List of cashed checks: "<<endl;
+     for(int i = 0; i < num_checks; i++) {
+        if(checks[i].get_cashed() == true) {
+            cout << checks[i]<<endl;
+        }
+    }
+    cout<<endl;
+    cout<<"List of uncashed checks: "<<endl;
+    for(int i = 0; i < num_checks; i++) {
+        if(checks[i].get_cashed() == false) {
+            cout << checks[i]<<endl;
+        }
+    }
 
     delete[] deposits;
     delete[] checks;
