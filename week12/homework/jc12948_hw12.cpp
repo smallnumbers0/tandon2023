@@ -78,7 +78,7 @@ int main() {
     }
     cout<<"How many deposits do you have?: "<<endl;
     cin>>num_deposits;
-    int* deposits = new int[num_deposits];
+    Money* deposits = new Money[num_deposits];
     cout<<"Please enter your deposits in the following format: ($00.00): "<<endl;
     for(int i = 0; i < num_deposits; i++) {
         cin>> deposits[i];
@@ -86,7 +86,7 @@ int main() {
 
     //total depsotis
     Money new_balance;
-    Money total_deposits;
+    Money total_deposit;
     //totcal checks cashed
     Money amount_cashed_checks;
     //total checks uncashed
@@ -95,7 +95,7 @@ int main() {
     Money previous_balance;
     cout<<"Please enter previous balance: "<<endl;
     cin>>previous_balance;
-    
+
 
     delete[] deposits;
     delete[] checks;
@@ -233,3 +233,9 @@ Check::Check(int num, long dollars, int cents, bool cashed) : number(num), amoun
 Check::Check(int num, long dollars, bool cashed) : number(num), amount(dollars, 0), is_cashed(cashed) {};
 
 Check::Check() : number(0), amount(0, 0), is_cashed(false) {};
+
+Money get_amount_cashed_checks(const Check checks[], int num_checks);
+
+Money get_amount_uncashed_checks(const Check checks[], int num_checks);
+
+Money get_total_deposit(const Money deposits[], int num_deposits);
