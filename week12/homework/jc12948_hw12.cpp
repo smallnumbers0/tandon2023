@@ -89,6 +89,7 @@ int main() {
 
     //total depsotis
     Money new_balance;
+    Money new_bank_balance;
     Money total_deposit;
     //totcal checks cashed
     Money amount_cashed_checks;
@@ -99,6 +100,19 @@ int main() {
     cout<<"Please enter previous balance: "<<endl;
     cin>>previous_balance;
 
+    amount_cashed_checks = get_amount_cashed_checks(checks, num_checks);
+    amount_uncashed_checks = get_amount_uncashed_checks(checks, num_checks);
+    total_deposit = get_total_deposit(deposits, num_deposits);
+    new_balance = previous_balance - (amount_cashed_checks + amount_uncashed_checks) + total_deposit;
+    new_bank_balance = previous_balance - amount_cashed_checks + total_deposit;
+
+    cout<<"The amount from cashed checks is: "<<amount_cashed_checks<<endl;
+    cout<<"The amount from uncashed checks is: "<<amount_uncashed_checks<<endl;
+    cout<<"The total desposit is"<<total_deposit<<endl;
+    cout<<"Your new balance is: "<<new_balance<<endl;
+    cout<<"The bank's new balance is: "<<new_bank_balance<<endl;
+    cout<<"The difference between your balance and the bank is: "<<new_balance - new_bank_balance<<endl;
+    
 
     delete[] deposits;
     delete[] checks;
@@ -240,13 +254,27 @@ Check::Check() : number(0), amount(0, 0), is_cashed(false) {};
 Money get_amount_cashed_checks(const Check checks[], int num_checks) {
     Money amount;
     for(int i = 0; i < num_checks; i++) {
-        if(checks[i].get_cashed()) {
+        if(checks[i].get_cashed() == true) {
             amount = amount + checks[i].get_amount();
         }
     }
     return amount;
 }
 
-Money get_amount_uncashed_checks(const Check checks[], int num_checks);
+Money get_amount_uncashed_checks(const Check checks[], int num_checks) {
+    Money amount;
+    for(int i = 0; i < num_checks; i++) {
+        if(checks[i].get_cashed() == false) {
+            amount = amount + checks[i].get_amount();
+        }
+    }
+    return amount;
+}
 
-Money get_total_deposit(const Money deposits[], int num_deposits);
+Money get_total_deposit(const Money deposits[], int num_deposits) {
+    Money amount;
+    for(int i = 0; i < num_deposits; i++) {
+        amount = amount + deposits[i];
+    }
+    return amount;
+}
