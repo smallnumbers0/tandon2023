@@ -18,16 +18,19 @@ class Money {
         friend istream& operator >>(istream& ins, Money& amount);
 
         friend ostream& operator <<(ostream& outs, const Money& amount);
+        Money get_amount_cashed_checks(const Check checks[], int num_checks);
+        Money get_amount_uncashed_checks(const Check checks[], int num_checks);
 
+        Money get_total_deposit(const Money deposits[], int num_deposits);
     private:
         long all_cents;
 };
 
 class Check {
     public:
-        int get_number();
-        Money get_amount();
-        bool get_cashed();
+        int get_number() const;
+        Money get_amount() const;
+        bool get_cashed() const;
         void set_number(int num);
         void set_amount(const Money& amount);
         void set_cashed(bool cashed);
@@ -81,7 +84,7 @@ int main() {
     Money* deposits = new Money[num_deposits];
     cout<<"Please enter your deposits in the following format: ($00.00): "<<endl;
     for(int i = 0; i < num_deposits; i++) {
-        cin>> deposits[i];
+        cin >> deposits[i];
     }
 
     //total depsotis
@@ -209,13 +212,13 @@ ostream& operator <<(ostream& outs, const Money& amount) {
     return outs;
 }
 
-int Check::get_number() {
+int Check::get_number() const {
     return number;
 }
-Money Check::get_amount() {
+Money Check::get_amount() const {
     return amount;
 }
-bool Check::get_cashed() {
+bool Check::get_cashed() const {
     return is_cashed;
 }
 void Check::set_number(int num) {
@@ -234,7 +237,15 @@ Check::Check(int num, long dollars, bool cashed) : number(num), amount(dollars, 
 
 Check::Check() : number(0), amount(0, 0), is_cashed(false) {};
 
-Money get_amount_cashed_checks(const Check checks[], int num_checks);
+Money get_amount_cashed_checks(const Check checks[], int num_checks) {
+    Money amount;
+    for(int i = 0; i < num_checks; i++) {
+        if(checks[i].get_cashed()) {
+            amount = amount + checks[i].get_amount();
+        }
+    }
+    return amount;
+}
 
 Money get_amount_uncashed_checks(const Check checks[], int num_checks);
 
