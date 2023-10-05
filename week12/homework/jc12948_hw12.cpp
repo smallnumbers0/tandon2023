@@ -106,9 +106,10 @@ int main() {
     new_balance = previous_balance - (amount_cashed_checks + amount_uncashed_checks) + total_deposit;
     new_bank_balance = previous_balance - amount_cashed_checks + total_deposit;
 
-    cout<<"The amount from cashed checks is: "<<amount_cashed_checks<<endl;
-    cout<<"The amount from uncashed checks is: "<<amount_uncashed_checks<<endl;
-    cout<<"The total desposit is"<<total_deposit<<endl;
+    cout<<"The total amount from cashed checks is: "<<amount_cashed_checks<<endl;
+    cout<<"The total amount from uncashed checks is: "<<amount_uncashed_checks<<endl;
+    cout<<"The total amount from deposits is "<<total_deposit<<endl;
+    cout<<endl;
     cout<<"Your new balance is: "<<new_balance<<endl;
     cout<<"The bank's new balance is: "<<new_bank_balance<<endl;
     cout<<"The difference between your balance and the bank is: "<<new_balance - new_bank_balance<<endl;
@@ -118,7 +119,6 @@ int main() {
             cout << checks[i]<<endl;
         }
     }
-    cout<<endl;
     cout<<"List of uncashed checks: "<<endl;
     for(int i = 0; i < num_checks; i++) {
         if(checks[i].get_cashed() == false) {
@@ -291,6 +291,6 @@ Money get_total_deposit(const Money deposits[], int num_deposits) {
     return amount;
 }
 ostream& operator<<(ostream& outs, const Check& check) {
-    outs << "Check Number: " << check.get_number() << ", Amount: " << check.get_amount() << ", Cashed?: " << (check.get_cashed() ? "Yes" : "No");
+    outs << "Check Number: " << check.get_number() << ", Amount: " << check.get_amount();
     return outs;
 }
