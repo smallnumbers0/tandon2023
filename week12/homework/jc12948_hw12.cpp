@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cmath>
+#include <cstdlib>
 using namespace std;
 
 class Money {
@@ -112,7 +114,7 @@ int main() {
     cout<<endl;
     cout<<"Your new balance is: "<<new_balance<<endl;
     cout<<"The bank's new balance is: "<<new_bank_balance<<endl;
-    cout<<"The difference between your balance and the bank is: "<<new_balance - new_bank_balance<<endl;
+    cout<<"The difference between your balance and the bank is a total of "<<new_bank_balance -new_balance<<" dollars."<<endl;
     cout<<"List of cashed checks: "<<endl;
      for(int i = 0; i < num_checks; i++) {
         if(checks[i].get_cashed() == true) {
