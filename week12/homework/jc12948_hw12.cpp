@@ -3,64 +3,63 @@
 #include <cstdlib>
 using namespace std;
 
+class Check;
+
 class Money {
-    public:
-        friend Money operator +(const Money& amount1, const Money& amount2);
-        friend Money operator -(const Money& amount1, const Money& amount2);
-        friend Money operator -(const Money& amount);
-        friend bool operator ==(const Money& amount1, const Money& amount2);
-        friend bool operator <(const Money& amount1, const Money& amount2);
+    long all_cents;
 
-        Money(long dollars, int cents);
-        Money(long dollars);
-        Money(); 
-
-        double get_value() const;
-
-        friend istream& operator >>(istream& ins, Money& amount);
-        friend ostream& operator <<(ostream& outs, const Money& amount);
-    private:
-        long all_cents;
+public:
+    // friend Money operator *(const Money& amount1, const Money& amount2);
+    friend Money operator +(const Money& amount1, const Money& amount2);
+    friend Money operator -(const Money& amount1, const Money& amount2);
+    friend Money operator -(const Money& amount);
+    friend bool operator ==(const Money& amount1, const Money& amount2);
+    friend bool operator <(const Money& amount1, const Money& amount2);
+    Money(long dollars, int cents);
+    Money(long dollars);
+    Money(); 
+    double get_value() const;
+    friend istream& operator >>(istream& ins, Money& amount);
+    friend ostream& operator <<(ostream& outs, const Money& amount);
+    
 };
 
 class Check {
-    public:
-        int get_number() const;
-        Money get_amount() const;
-        bool get_cashed() const;
-        void set_number(int number);
-        void set_amount(const Money& amount);
-        void set_cashed(bool cashed);
-        Check(int number, long dollars, int cents, bool cashed);
+    int number;
+    Money amount;
+    bool is_cashed;
 
-        Check(int number, long dollars, bool cashed);
-
-        Check();
-
-        friend istream& operator>>(istream& input, Check& check) {
-            int is_cashed;
-            input >> check.number >> check.amount >> is_cashed;
-            if(is_cashed == 1) {
-                check.is_cashed = true;
-            }
-            else if(is_cashed == 0) {
-                check.is_cashed = false;
-            }
-            else {
-                cout<<"Error. Could not determine if check is to be cashed. Entered something other than 1 or 0."<<endl;
-                exit(1);
-            }
-            return input;
+public:
+    int get_number() const;
+    Money get_amount() const;
+    bool get_cashed() const;
+    void set_number(int number);
+    void set_amount(const Money& amount);
+    void set_cashed(bool cashed);
+    Check(int number, long dollars, int cents, bool cashed);
+    Check(int number, long dollars, bool cashed);
+    Check();
+    friend istream& operator>>(istream& input, Check& check) { //Check boolean for 1 or 0 only
+        int is_cashed;
+        input >> check.number >> check.amount >> is_cashed;
+        if(is_cashed == 1) {
+            check.is_cashed = true;
         }
-        friend istream& operator >>(istream& ins, Check& check);
-        friend ostream& operator <<(ostream& outs, const Check& check);
-
-    private:
-        int number;
-        Money amount;
-        bool is_cashed;
+        else if(is_cashed == 0) {
+            check.is_cashed = false;
+        }
+        else {
+            cout<<"Error. Could not determine if check is to be cashed. Entered something other than 1 or 0."<<endl;
+            exit(1);
+        }
+        return input;
+    }
+    friend istream& operator >>(istream& ins, Check& check);
+    friend ostream& operator <<(ostream& outs, const Check& check);
+    
 
 };
+
 int digit_to_int(char c);
 Money get_amount_cashed_checks(const Check checks[], int num_checks);
 Money get_amount_uncashed_checks(const Check checks[], int num_checks);
@@ -99,14 +98,22 @@ int main() {
     Money amount_uncashed_checks;
     //total balance
     Money previous_balance;
+    Money balance_difference;
     cout<<"Please enter previous balance ($00.00): "<<endl;
     cin>>previous_balance;
-
+    //Instructions feel unclear. Why are we asking user for a new balance and then calculating a new balance? I never balanced a checkbook before.
+    // cout<<"Please enter new balance according to the user: "<<endl;
+    // cin>>new_balance;
     amount_cashed_checks = get_amount_cashed_checks(checks, num_checks);
     amount_uncashed_checks = get_amount_uncashed_checks(checks, num_checks);
     total_deposit = get_total_deposit(deposits, num_deposits);
-    new_balance = previous_balance - (amount_cashed_checks + amount_uncashed_checks) + total_deposit;
+    new_balance = previous_balance - amount_cashed_checks + amount_uncashed_checks + total_deposit; //The new account balance should be the old balance plus all deposits,minus all checks that have been cashed.
     new_bank_balance = previous_balance - amount_cashed_checks + total_deposit;
+    balance_difference = new_balance - new_bank_balance;
+    //To keep the difference positive
+    if(balance_difference < 0) {
+        balance_difference = -balance_difference;
+    }
 
     cout<<"The total amount from cashed checks is: "<<amount_cashed_checks<<endl;
     cout<<"The total amount from uncashed checks is: "<<amount_uncashed_checks<<endl;
@@ -114,7 +121,7 @@ int main() {
     cout<<endl;
     cout<<"Your new balance is: "<<new_balance<<endl;
     cout<<"The bank's new balance is: "<<new_bank_balance<<endl;
-    cout<<"The difference between your balance and the bank is a total of "<<new_bank_balance -new_balance<<" dollars."<<endl;
+    cout<<"The difference between your balance and the bank is a total of "<<balance_difference<<" dollars."<<endl;
     cout<<"List of cashed checks: "<<endl;
      for(int i = 0; i < num_checks; i++) {
         if(checks[i].get_cashed() == true) {
@@ -240,6 +247,7 @@ ostream& operator <<(ostream& outs, const Money& amount) {
     return outs;
 }
 
+
 int Check::get_number() const {
     return number;
 }
@@ -292,6 +300,8 @@ Money get_total_deposit(const Money deposits[], int num_deposits) {
     }
     return amount;
 }
+
+
 ostream& operator<<(ostream& outs, const Check& check) {
     outs << "Check Number: " << check.get_number() << ", Amount: " << check.get_amount();
     return outs;
