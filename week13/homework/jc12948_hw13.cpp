@@ -34,7 +34,7 @@ public:
     void breed_doodlebugs(); 
     void breed_ants();
     void starve();  
-    int get_time_step() const; //increment time step by 1
+    int get_time_step() const; 
     void set_time_step();
 
     World();
@@ -158,6 +158,35 @@ void World::display() const {
     }
 }
 
+void World::move_ants() {
+    for(int i = 0; i < ants.size(); i++) {
+        ants[i].move(world);
+    }
+}
+
+void World::breed_ants() {
+    for(int i = 0; i < ants.size(); i++) {
+        ants[i].breed(world, ants, time_step);
+    }
+}
+
+void World::move_doodlebugs() {
+    for(int i = 0; i < doodlebugs.size(); i++) {
+        doodlebugs[i].move(world, ants);
+    }
+}
+
+void World::breed_doodlebugs() {
+    for(int i = 0; i < doodlebugs.size(); i++) {
+        doodlebugs[i].breed(world, doodlebugs, time_step);
+    }
+}
+
+void World::starve() {
+    for(int i = 0; i < doodlebugs.size(); i++) {
+        doodlebugs[i].starve(world, doodlebugs);
+    }
+}
 // void World::initialize_ants() {
 //     int location = rand() % 400 + 1;
 //     if(world[location].get_type() == EMPTY_SPACE) {
@@ -208,13 +237,19 @@ void Ant::set_ant_location(int new_location) {
     ant_location = new_location;
 }
 
-// void Ant::move(vector<Organism> &world) { // -1 for left/ +1 for right/ -20 for up/ + 20 for down
+void Ant::move(vector<Organism> &world) { // -1 for left/ +1 for right/ -20 for up/ + 20 for down
+    //check for empty adjacent spaces around each ant.
+    //randomly move to one of the empty spaces.
+    //set previous ant location to empty space.
+}
 
-// }
-
-// void Ant::breed(vector<Organism> &world, vector<Ant> &ants, int &time_step) {
-    
-// }
+void Ant::breed(vector<Organism> &world, vector<Ant> &ants, int &time_step) {
+    //if time step 3
+    //check for empty adjacent pos
+    //if all adjacent locations are full, breed does not happen
+    //else randomly add ant at adjacnet pos
+    //add ant to vector and update location
+}
 
 /******************************************************/
 
@@ -234,17 +269,23 @@ int Doodlebug::get_starve_count() {
     return starve_count;
 }
 
-// void Doodlebug::starve(vector<Organism> &world, vector<Doodlebug> &doodlebugs) {
+void Doodlebug::starve(vector<Organism> &world, vector<Doodlebug> &doodlebugs) {
+    //if starve counter is 3, set doodlebug location to empty space
+}
 
-// }
+void Doodlebug::move(vector<Organism> &world, vector<Ant> &ants) {
+    //if ants are next to doodlebug, randomly move to ant location and eat it
+    //set previous location to empty space
+    //if no ants, randomly move to empty space adjacent to doodlebug
+}
 
-// void Doodlebug::move(vector<Organism> &world, vector<Ant> &ants) {
-
-// }
-
-// void Doodlebug::breed(vector<Organism> &world, vector<Doodlebug> &Doodlebug, int time_step) {
-
-// }
+void Doodlebug::breed(vector<Organism> &world, vector<Doodlebug> &Doodlebug, int time_step) {
+     //if time step 8
+    //check for empty adjacent pos
+    //if all adjacent locations are full, breed does not happen
+    //else randomly add doodlebug at adjacnet pos
+    //add doodlebug to vector and update location
+}
 
 /******************************************************/
 
