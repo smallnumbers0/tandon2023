@@ -94,6 +94,7 @@ int main() {
         cout<<"Time: "<<time_count<<endl;
         getline(cin, input);
         if(input == "") {
+            world.move_ants();
             world.display();
             time_count++;
         }
@@ -238,6 +239,39 @@ void Ant::set_ant_location(int new_location) {
 }
 
 void Ant::move(vector<Organism> &world) { // -1 for left/ +1 for right/ -20 for up/ + 20 for down
+    int new_location;
+    int random_direction;
+    vector <int>direction = {-1, 1, -20, 20};
+    
+    random_direction = direction[rand() % 4];
+    new_location = ant_location + random_direction;
+
+    while((world[new_location].get_type() == EMPTY_SPACE) && (new_location >=1 && new_location <= 400)) { //check if new location is out of bounds.
+        if((ant_location - 1) % 20 == 0 && random_direction != -1) {
+            world[ant_location].set_type(EMPTY_SPACE);
+            ant_location = new_location;
+            world[ant_location].set_type(ANTS);
+            break;
+        }
+        else if(ant_location % 20 == 0 && random_direction != 1) {
+            world[ant_location].set_type(EMPTY_SPACE);
+            ant_location = new_location;
+            world[ant_location].set_type(ANTS);
+            break;
+        }
+        else if(ant_location % 20 != 0) {
+            world[ant_location].set_type(EMPTY_SPACE);
+            ant_location = new_location;
+            world[ant_location].set_type(ANTS);
+            break;
+        }
+        else {
+            world[ant_location].set_type(ANTS);
+            break;
+        }
+    }
+
+
     //check for empty adjacent spaces around each ant.
     //randomly move to one of the empty spaces.
     //set previous ant location to empty space.
@@ -280,7 +314,7 @@ void Doodlebug::move(vector<Organism> &world, vector<Ant> &ants) {
 }
 
 void Doodlebug::breed(vector<Organism> &world, vector<Doodlebug> &Doodlebug, int time_step) {
-     //if time step 8
+    //if time step 8
     //check for empty adjacent pos
     //if all adjacent locations are full, breed does not happen
     //else randomly add doodlebug at adjacnet pos
