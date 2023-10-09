@@ -5,6 +5,10 @@
 
 using namespace std;
 
+const char ANTS = 'o';
+const char DOODLEBUGS = 'X';
+const char EMPTY_SPACE = '-';
+
 class World;
 class Organism;
 class Doodlebug;
@@ -22,6 +26,9 @@ public:
     vector<Doodlebug> doodlebugs;
 
     void display() const;
+    void initialize_world();
+    void initialize_ants();
+    void initialize_doodlebugs();
     void move_doodlebugs(); 
     void move_ants();
     void breed_doodlebugs(); 
@@ -36,7 +43,7 @@ public:
 
 class Organism {
     int location;
-    char type = '-';
+    char type = EMPTY_SPACE;
 public:
     void set_type(char new_type);
     char get_type() const;
@@ -45,12 +52,12 @@ public:
     int get_location() const;
     void set_location(int new_location);
 
-    Organism(){type = '-';};
+    Organism(){type = EMPTY_SPACE;};
 };
 
 class Ant: public Organism {
     int ant_location;
-    char type = 'o';
+    char type = ANTS;
 public:
     void move(vector<Organism> &world);   //find adjacent empty spots and randomly move every time step, if out of bounds or all adjacent full, stay still
     void breed(vector<Organism> &world, vector<Ant> &ants, int &time_step); //find adjacent empty spots and breed every 3 time steps. 
@@ -62,7 +69,7 @@ public:
 
 class Doodlebug: public Organism { //derived classes can overwrite virtual function of organism class
     int doodlebug_location;
-    char type = 'x';
+    char type = DOODLEBUGS;
     int starve_count = 0;
 public:
     void move(vector<Organism> &world, vector<Ant> &ants);   //find adjacent empty spots and randomly move every time step, if there are ants, it will eat the ant instead
@@ -80,6 +87,7 @@ int main() {
     int time_count = 1;
     string input;
     World world;
+    world.initialize_world();
     cout<<"Please press enter to continue with the time simulation or any enter any else to stop: "<<endl;
     getline(cin, input);
     while(true) {
@@ -102,31 +110,71 @@ int main() {
 
 World::World() {
     int location = 0;
-    for(int i = 1; i <= 400; i++) {
+    for(int i = 0; i <= 400; i++) {
         world.push_back(Organism());
         world[location].set_location(location);
         location++;
     }
 }
 
+void World::initialize_world() {
+    srand(time(0));
+/**Add 5 Doodlebugs**/
+    for (int i = 0; i < 5; i++) {
+        int location = rand() % 400 + 1;
+        if (world[location].get_type() == EMPTY_SPACE) {
+            doodlebugs.push_back(Doodlebug());
+            doodlebugs[doodlebugs.size() - 1].set_doodlebug_location(location);
+            world[location].set_type(DOODLEBUGS);
+        }
+    }
+/**Add 100 Ants**/
+    for (int i = 0; i < 100; i++) {
+        int location = rand() % 400 + 1;
+        if (world[location].get_type() == EMPTY_SPACE) {
+            ants.push_back(Ant());
+            ants[ants.size() - 1].set_ant_location(location);
+            world[location].set_type(ANTS);
+        }
+    }
+}
+
 void World::display() const {
-    int location = 0;
-    for(int i = 0; i < 20; i++) {
+    int location = 1;
+    for(int i = 1; i <= 20; i++) {
         for(int j = 0; j < 20; j++) {
-            if(world[location].get_type() == '-') {
-                cout<<'-';
+            if(world[location].get_type() == EMPTY_SPACE) {
+                cout<<EMPTY_SPACE<<" ";
             }
-            else if(world[location].get_type() == 'o') {
-                cout<<'o';
+            else if(world[location].get_type() == ANTS) {
+                cout<<ANTS<<" ";
             }
-            else if(world[location].get_type() == 'x') {
-                cout<<'x';
+            else if(world[location].get_type() == DOODLEBUGS) {
+                cout<<DOODLEBUGS<<" ";
             }
             location++;
         }
         cout<<endl;
     }
 }
+
+// void World::initialize_ants() {
+//     int location = rand() % 400 + 1;
+//     if(world[location].get_type() == EMPTY_SPACE) {
+//         ants.push_back(Ant());
+//         ants[ants.size()-1].set_ant_location(location);
+//         world[location].set_type(ANTS);
+//     }
+// }
+
+// void World::initialize_doodlebugs() {
+//     int location = rand() % 400 + 1;
+//     if(world[location].get_type() == EMPTY_SPACE) {
+//         doodlebugs.push_back(Doodlebug());
+//         doodlebugs[doodlebugs.size()-1].set_doodlebug_location(location);
+//         world[location].set_type(DOODLEBUGS);
+//     }
+// }
 
 /******************************************************/
 /*****************  General Organism  *****************/
