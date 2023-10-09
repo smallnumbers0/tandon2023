@@ -36,9 +36,8 @@ class Organism {
 public:
     void set_type(char curr_type);
     char get_type();
-    void move();
-    void breed();
-    void starve();
+    virtual void move(); 
+    virtual void breed();
     int get_location();
     void set_location();
 
@@ -57,7 +56,7 @@ public:
     Ant(){};
 };
 
-class Doodlebug: public Organism {
+class Doodlebug: public Organism { //derived classes can overwrite virtual function of organism class
     int doodlebug_location;
     char type = 'x';
     int starve_count = 0;
@@ -97,8 +96,8 @@ int main() {
 void World::display() {
     for(int i = 0; i < 20; i++) {
         for(int j = 0; j < 20; j++) {
-            cout<<" - ";
+            cout<<"-"<<" ";
         }
-        cout<<endl<<endl;
+        cout<<endl;
     }
 }
