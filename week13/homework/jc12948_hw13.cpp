@@ -67,7 +67,7 @@ public:
     int get_age() const;
     void increment_age();
 
-    Ant(){};
+    Ant(){type = ANTS;};
 };
 
 class Doodlebug: public Organism { //derived classes can overwrite virtual function of organism class
@@ -86,7 +86,7 @@ public:
     int get_age() const;
 
 
-    Doodlebug(){};
+    Doodlebug(){type = DOODLEBUGS;};
 };
 
 
@@ -439,7 +439,7 @@ void Doodlebug::breed(vector<Organism> &world, vector<Doodlebug> &doodlebugs, in
         int breed_location = doodlebug_location + directions[breed_direction];
 
         while (breed == false) {
-            if (world[breed_location].get_type() == EMPTY_SPACE || world[breed_location].get_type() == ANTS && (breed_location >= 1 && breed_location <= 400)) {
+            if (world[breed_location].get_type() == EMPTY_SPACE && (breed_location >= 1 && breed_location <= 400)) {
                 if (directions[breed_direction] != 1 && (doodlebug_location + 1 % 20 == 0)) {
                     world[breed_location].set_type(DOODLEBUGS);
                     doodlebugs.push_back(Doodlebug());
