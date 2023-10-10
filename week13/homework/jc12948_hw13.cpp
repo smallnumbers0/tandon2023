@@ -58,11 +58,14 @@ public:
 class Ant: public Organism {
     int ant_location;
     char type = ANTS;
+    int age = 0;
 public:
     void move(vector<Organism> &world);   //find adjacent empty spots and randomly move every time step, if out of bounds or all adjacent full, stay still
     void breed(vector<Organism> &world, vector<Ant> &ants, int &time_step); //find adjacent empty spots and breed every 3 time steps. 
     int get_ant_location() const;
     void set_ant_location(int new_location);
+    int get_age() const;
+    void increment_age();
 
     Ant(){};
 };
@@ -114,9 +117,10 @@ World::World() {
     int location = 0;
     for(int i = 0; i <= 400; i++) {
         world.push_back(Organism());
-        world[location].set_location(location);
-        location++;
+        world[i].set_location(i);
+        cout<<i<<endl;
     }
+
 }
 
 void World::initialize_world() {
@@ -144,7 +148,7 @@ void World::initialize_world() {
 void World::display() const {
     int location = 1;
     for(int i = 1; i <= 20; i++) {
-        for(int j = 0; j < 20; j++) {
+        for(int j = 1; j <= 20; j++) {
             if(world[location].get_type() == EMPTY_SPACE) {
                 cout<<EMPTY_SPACE<<" ";
             }
@@ -239,6 +243,7 @@ void Organism::set_location(int new_location) {
 /***********************  Ant  ************************/
 /******************************************************/
 
+
 int Ant::get_ant_location() const {
     return ant_location;
 }
@@ -247,39 +252,46 @@ void Ant::set_ant_location(int new_location) {
     ant_location = new_location;
 }
 
+int Ant::get_age() const {
+    return age;
+}
+
+void Ant::increment_age() {
+    age++;
+}
+
+
+
 void Ant::move(vector<Organism> &world) { 
     
     int new_location;
     int random_direction;
     vector <int>direction = {-1, 1, -20, 20}; // -1 for left/ +1 for right/ -20 for up/ + 20 for down
-    // bool move = false;
+
     random_direction = direction[rand() % 4];
     new_location = ant_location + random_direction;
+    increment_age();
 
-    // while(move == false) {
+   
         if((world[new_location].get_type() == EMPTY_SPACE) && (new_location >=1 && new_location <= 400)) { //check if new location is out of bounds.
-            if((ant_location - 1) % 20 == 0 && random_direction != -1) {
+            if((ant_location + 1) % 20 == 0 && random_direction != 1) {
                 world[ant_location].set_type(EMPTY_SPACE);
                 ant_location = new_location;
                 world[ant_location].set_type(ANTS);
-                // move = true;
+            
             }
-            else if(ant_location % 20 == 0 && random_direction != 1) {
+            else if(ant_location % 20 == 0 && random_direction != -1) {
                 world[ant_location].set_type(EMPTY_SPACE);
                 ant_location = new_location;
                 world[ant_location].set_type(ANTS);
-                // move = true;
+        
             }  
             else if(ant_location % 20 != 0) {
                 world[ant_location].set_type(EMPTY_SPACE);
                 ant_location = new_location;
                 world[ant_location].set_type(ANTS);
-                // move = true;
+                
             }
-            // else {
-            //     world[ant_location].set_type(ANTS); //stay in place
-            // } 
-        // }
     }
 
     //check for empty adjacent spaces around each ant.
@@ -289,25 +301,40 @@ void Ant::move(vector<Organism> &world) {
 
 void Ant::breed(vector<Organism> &world, vector<Ant> &ants, int &time_step) {
     vector<int> directions = {-1, 1, -20, 20}; // left right down up
-    int breed_location = ant_location + directions[rand() % directions.size()]; //get random breed location
 
-    if(time_step % 3 == 0) {
+    if (time_step % 3 == 0 && get_age() >= 3) { // Check if it's a multiple of 3 (every 3 time steps)
         bool breed = false;
         int breed_direction = 0;
-        while( breed == false) {
-            if(world[breed_location].get_type() == EMPTY_SPACE) {
-                ants.push_back(Ant());
-                ants[ants.size()-1].set_ant_location(breed_location);
-                world[breed_location].set_type(ANTS);
+        int breed_location = ant_location + directions[rand() % directions.size()]; //get random breed location
+
+        while (breed == false) {
+            if (world[breed_location].get_type() == EMPTY_SPACE && (breed_location >= 1 && breed_location <= 400)) {
+                if (directions[breed_direction] != 1 && (ant_location + 1 % 20 == 0)) {
+                    world[breed_location].set_type(ANTS);
+                    ants.push_back(Ant());
+                    ants[ants.size() - 1].set_ant_location(breed_location);
+                    breed = true;
+                } else if (directions[breed_direction] != -1 && ant_location % 20 == 0) {
+                    world[breed_location].set_type(ANTS);
+                    ants.push_back(Ant());
+                    ants[ants.size() - 1].set_ant_location(breed_location);
+                    breed = true;
+                } else if (ant_location % 20 != 0) {
+                    world[breed_location].set_type(ANTS);
+                    ants.push_back(Ant());
+                    ants[ants.size() - 1].set_ant_location(breed_location);
+                    breed = true;
+                }
+            } else if (breed == false && breed_direction == 3) {
                 breed = true;
             }
-            else if(breed == false && breed_direction == 3) {
-                breed = true;
-            }
-        breed_direction++;
+
+            breed_direction++;
         }
     }
 }
+
+
 
 
 
