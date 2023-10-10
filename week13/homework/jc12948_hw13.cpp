@@ -96,9 +96,11 @@ int main() {
         getline(cin, input);
         if(input == "") {
             world.move_ants();
-            if(world.get_time_step() % 3 == 0) {
-                world.breed_ants();
-            }
+            world.move_doodlebugs();
+            world.breed_ants();
+            world.breed_doodlebugs();
+            world.starve();
+            
             world.display();
             cout<<"Time step: "<<world.get_time_step()<<endl;
             world.set_time_step(world.get_time_step() + 1);
@@ -114,19 +116,17 @@ int main() {
 /******************************************************/
 
 World::World() {
-    int location = 0;
     for(int i = 0; i <= 400; i++) {
         world.push_back(Organism());
         world[i].set_location(i);
         cout<<i<<endl;
     }
-
 }
 
 void World::initialize_world() {
     srand(time(0));
 /**Add 5 Doodlebugs**/
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 5; i++) {
         int location = rand() % 400 + 1;
         if (world[location].get_type() == EMPTY_SPACE) {
             doodlebugs.push_back(Doodlebug());
@@ -135,7 +135,7 @@ void World::initialize_world() {
         }
     }
 /**Add 100 Ants**/
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 100; i++) {
         int location = rand() % 400 + 1;
         if (world[location].get_type() == EMPTY_SPACE) {
             ants.push_back(Ant());
@@ -302,10 +302,10 @@ void Ant::move(vector<Organism> &world) {
 void Ant::breed(vector<Organism> &world, vector<Ant> &ants, int &time_step) {
     vector<int> directions = {-1, 1, -20, 20}; // left right down up
 
-    if (time_step % 3 == 0 && get_age() >= 3) { // Check if it's a multiple of 3 (every 3 time steps)
+    if (time_step % 3 == 0 && get_age() >= 3) { // Check if multiple of 3 time steps old and also get age so new breeded ants added dont breed immediately
         bool breed = false;
         int breed_direction = 0;
-        int breed_location = ant_location + directions[rand() % directions.size()]; //get random breed location
+        int breed_location = ant_location + directions[breed_direction];
 
         while (breed == false) {
             if (world[breed_location].get_type() == EMPTY_SPACE && (breed_location >= 1 && breed_location <= 400)) {
@@ -325,7 +325,8 @@ void Ant::breed(vector<Organism> &world, vector<Ant> &ants, int &time_step) {
                     ants[ants.size() - 1].set_ant_location(breed_location);
                     breed = true;
                 }
-            } else if (breed == false && breed_direction == 3) {
+            } 
+            else if (breed == false && breed_direction == 3) {
                 breed = true;
             }
 
@@ -365,12 +366,53 @@ int Doodlebug::get_starve_count() {
 
 void Doodlebug::starve(vector<Organism> &world, vector<Doodlebug> &doodlebugs) {
     //if starve counter is 3, set doodlebug location to empty space
+    if(starve_count >= 3) {
+        world[doodlebug_location].set_type(EMPTY_SPACE);
+        for(int i = 0; i < doodlebugs.size(); i++) {
+            if(doodlebug_location == doodlebugs[i].get_doodlebug_location()) {
+                doodlebugs.erase(doodlebugs.begin() + i);
+            }
+        }
+    }
 }
 
 void Doodlebug::move(vector<Organism> &world, vector<Ant> &ants) {
     //if ants are next to doodlebug, randomly move to ant location and eat it
     //set previous location to empty space
     //if no ants, randomly move to empty space adjacent to doodlebug
+    vector<int> directions = {-1, 1, -20, 20};
+    int new_doodlebug_location = doodlebug_location + directions[rand() % 4];
+    if(world[new_doodlebug_location].get_type() == ANTS && (new_doodlebug_location >= 1 && new_doodlebug_location <= 400)) {
+        world[new_doodlebug_location].set_type(DOODLEBUGS);
+        world[doodlebug_location].set_type(EMPTY_SPACE);
+        doodlebug_location = new_doodlebug_location;
+        int ant_location_ptr;
+        for(int i = 0; i < ants.size(); i++) {
+            if(doodlebug_location == ants[i].get_ant_location()) {
+                ant_location_ptr = i;
+            }
+        }
+        ants.erase(ants.begin() + ant_location_ptr);
+        starve_count = 0;
+    }
+    else if(world[new_doodlebug_location].get_type() == EMPTY_SPACE && (new_doodlebug_location >= 1 && new_doodlebug_location <= 400)) {
+        starve_count++;
+        if(doodlebug_location % 20 == 0 && directions[rand() % 4] != 1) {
+            world[doodlebug_location].set_type(EMPTY_SPACE);
+            doodlebug_location = new_doodlebug_location;
+            world[doodlebug_location].set_type(DOODLEBUGS);
+        }
+        else if((doodlebug_location - 1 % 20) == 0 && directions[rand() % 4] != -1) {
+            world[doodlebug_location].set_type(EMPTY_SPACE);
+            doodlebug_location = new_doodlebug_location;
+            world[doodlebug_location].set_type(DOODLEBUGS);
+        }
+        else if (doodlebug_location % 20 != 0) {
+            world[doodlebug_location].set_type(EMPTY_SPACE);
+            doodlebug_location = new_doodlebug_location;
+            world[doodlebug_location].set_type(DOODLEBUGS);
+        }
+    }
 }
 
 void Doodlebug::breed(vector<Organism> &world, vector<Doodlebug> &Doodlebug, int time_step) {
