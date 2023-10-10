@@ -18,7 +18,7 @@ class World {
     friend class Ant;
     friend class Organism;
     friend class Doodlebug;
-    int time_step;
+    int time_step = 1;
 
 public:
     vector<Organism> world;
@@ -47,8 +47,8 @@ class Organism {
 public:
     void set_type(char new_type);
     char get_type() const;
-    void move(); 
-    void breed();
+    virtual void move(){}; 
+    virtual void breed(){};
     int get_location() const;
     void set_location(int new_location);
 
@@ -84,15 +84,18 @@ public:
 
 
 int main() {
+    srand(time(0));
     string input;
     World world;
-    world.set_time_step(1);
     world.initialize_world();
     cout<<"Please press enter to continue with the time simulation or any enter any else to stop: "<<endl;
     while(true) {
         getline(cin, input);
         if(input == "") {
             world.move_ants();
+            if(world.get_time_step() % 3 == 0) {
+                world.breed_ants();
+            }
             world.display();
             cout<<"Time step: "<<world.get_time_step()<<endl;
             world.set_time_step(world.get_time_step() + 1);
@@ -100,7 +103,6 @@ int main() {
         else {
             break;
         }
-
     }
     return 0;
 }
@@ -120,7 +122,7 @@ World::World() {
 void World::initialize_world() {
     srand(time(0));
 /**Add 5 Doodlebugs**/
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 1; i++) {
         int location = rand() % 400 + 1;
         if (world[location].get_type() == EMPTY_SPACE) {
             doodlebugs.push_back(Doodlebug());
@@ -129,7 +131,7 @@ void World::initialize_world() {
         }
     }
 /**Add 100 Ants**/
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 2; i++) {
         int location = rand() % 400 + 1;
         if (world[location].get_type() == EMPTY_SPACE) {
             ants.push_back(Ant());
@@ -246,32 +248,38 @@ void Ant::set_ant_location(int new_location) {
 }
 
 void Ant::move(vector<Organism> &world) { 
+    
     int new_location;
     int random_direction;
     vector <int>direction = {-1, 1, -20, 20}; // -1 for left/ +1 for right/ -20 for up/ + 20 for down
-    
+    // bool move = false;
     random_direction = direction[rand() % 4];
     new_location = ant_location + random_direction;
 
-    if((world[new_location].get_type() == EMPTY_SPACE) && (new_location >=1 && new_location <= 400)) { //check if new location is out of bounds.
-        if((ant_location - 1) % 20 == 0 && random_direction != -1) {
-            world[ant_location].set_type(EMPTY_SPACE);
-            ant_location = new_location;
-            world[ant_location].set_type(ANTS);
-        }
-        else if(ant_location % 20 == 0 && random_direction != 1) {
-            world[ant_location].set_type(EMPTY_SPACE);
-            ant_location = new_location;
-            world[ant_location].set_type(ANTS);
-        }
-        else if(ant_location % 20 != 0) {
-            world[ant_location].set_type(EMPTY_SPACE);
-            ant_location = new_location;
-            world[ant_location].set_type(ANTS);
-        }
-        else {
-            world[ant_location].set_type(ANTS);
-        }
+    // while(move == false) {
+        if((world[new_location].get_type() == EMPTY_SPACE) && (new_location >=1 && new_location <= 400)) { //check if new location is out of bounds.
+            if((ant_location - 1) % 20 == 0 && random_direction != -1) {
+                world[ant_location].set_type(EMPTY_SPACE);
+                ant_location = new_location;
+                world[ant_location].set_type(ANTS);
+                // move = true;
+            }
+            else if(ant_location % 20 == 0 && random_direction != 1) {
+                world[ant_location].set_type(EMPTY_SPACE);
+                ant_location = new_location;
+                world[ant_location].set_type(ANTS);
+                // move = true;
+            }  
+            else if(ant_location % 20 != 0) {
+                world[ant_location].set_type(EMPTY_SPACE);
+                ant_location = new_location;
+                world[ant_location].set_type(ANTS);
+                // move = true;
+            }
+            // else {
+            //     world[ant_location].set_type(ANTS); //stay in place
+            // } 
+        // }
     }
 
     //check for empty adjacent spaces around each ant.
@@ -280,13 +288,35 @@ void Ant::move(vector<Organism> &world) {
 }
 
 void Ant::breed(vector<Organism> &world, vector<Ant> &ants, int &time_step) {
+    vector<int> directions = {-1, 1, -20, 20}; // left right down up
+    int breed_location = ant_location + directions[rand() % directions.size()]; //get random breed location
+
+    if(time_step % 3 == 0) {
+        bool breed = false;
+        int breed_direction = 0;
+        while( breed == false) {
+            if(world[breed_location].get_type() == EMPTY_SPACE) {
+                ants.push_back(Ant());
+                ants[ants.size()-1].set_ant_location(breed_location);
+                world[breed_location].set_type(ANTS);
+                breed = true;
+            }
+            else if(breed == false && breed_direction == 3) {
+                breed = true;
+            }
+        breed_direction++;
+        }
+    }
+}
+
+
+
 
     //if time step 3
     //check for empty adjacent pos
     //if all adjacent locations are full, breed does not happen
     //else randomly add ant at adjacnet pos
     //add ant to vector and update location
-}
 
 /******************************************************/
 
