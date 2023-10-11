@@ -8,6 +8,11 @@ using namespace std;
 const char ANTS = 'o';
 const char DOODLEBUGS = 'X';
 const char EMPTY_SPACE = '-';
+const int GRID_DIMENSION = 20;
+const int MOVE_LEFT = -1;
+const int MOVE_RIGHT = 1;
+const int MOVE_UP = -20;
+const int MOVE_DOWN = 20;
 
 class World;
 class Organism;
@@ -92,6 +97,7 @@ public:
 
 int main() {
     srand(time(0));
+
     string input;
     World world;
     world.initialize_world();
@@ -101,11 +107,11 @@ int main() {
         if(input == "") {
             world.move_doodlebugs();
             world.breed_doodlebugs();
+            world.starve();
             world.move_ants();
             world.breed_ants();
-            world.starve();
-            
             world.display();
+            
             cout<<"Time step: "<<world.get_time_step()<<endl;
             world.set_time_step(world.get_time_step() + 1);
         }
@@ -150,8 +156,8 @@ void World::initialize_world() {
 
 void World::display() const {
     int location = 1;
-    for(int i = 1; i <= 20; i++) {
-        for(int j = 1; j <= 20; j++) {
+    for(int i = 1; i <= GRID_DIMENSION; i++) {
+        for(int j = 1; j <= GRID_DIMENSION; j++) {
             
             if(world[location].get_type() == EMPTY_SPACE) {
                 // cout<<location;
@@ -274,7 +280,7 @@ void Ant::move(vector<Organism> &world) {
     
     int new_location;
     int random_direction;
-    vector <int>direction = {-1, 1, -20, 20}; // -1 for left/ +1 for right/ -20 for up/ + 20 for down
+    vector <int>direction = {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN}; // -1 for left/ +1 for right/ -GRID_DIMENSION for up/ + GRID_DIMENSION for down
 
     random_direction = direction[rand() % 4];
     new_location = ant_location + random_direction;
@@ -282,19 +288,19 @@ void Ant::move(vector<Organism> &world) {
 
    
         if((world[new_location].get_type() == EMPTY_SPACE) && (new_location >=1 && new_location <= 400)) { //check if new location is out of bounds.
-            if(((ant_location - 1) % 20 == 0) && (new_location % 20 != 0)) {
+            if(((ant_location - 1) % GRID_DIMENSION == 0) && (new_location % GRID_DIMENSION != 0)) {
                 world[ant_location].set_type(EMPTY_SPACE);
                 ant_location = new_location;
                 world[ant_location].set_type(ANTS);
             
             }
-            else if(ant_location % 20 == 0 && new_location % 20 != 1) {
+            else if(ant_location % GRID_DIMENSION == 0 && new_location % GRID_DIMENSION != 1) {
                 world[ant_location].set_type(EMPTY_SPACE);
                 ant_location = new_location;
                 world[ant_location].set_type(ANTS);
         
             }  
-            else if(ant_location % 20 != 0) {
+            else if(ant_location % GRID_DIMENSION != 0) {
                 world[ant_location].set_type(EMPTY_SPACE);
                 ant_location = new_location;
                 world[ant_location].set_type(ANTS);
@@ -308,7 +314,7 @@ void Ant::move(vector<Organism> &world) {
 }
 
 void Ant::breed(vector<Organism> &world, vector<Ant> &ants, int &time_step) {
-    vector<int> directions = {-1, 1, -20, 20}; // left right down up
+    vector<int> directions = {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN};
 
     if (time_step % 3 == 0 && get_age() >= 3) { // Check if multiple of 3 time steps old and also get age so new breeded ants added dont breed immediately
         bool breed = false;
@@ -317,19 +323,19 @@ void Ant::breed(vector<Organism> &world, vector<Ant> &ants, int &time_step) {
 
         while (breed == false) {
             if (world[breed_location].get_type() == EMPTY_SPACE && (breed_location >= 1 && breed_location <= 400)) {
-                if ((breed_location % 20 != 1) && (ant_location % 20 == 0)) {
+                if ((breed_location % GRID_DIMENSION != 1) && (ant_location % GRID_DIMENSION == 0)) {
                     world[breed_location].set_type(ANTS);
                     ants.push_back(Ant());
                     ants[ants.size() - 1].set_ant_location(breed_location);
                     breed = true;
                 } 
-                else if ((breed_location % 20 != 0) && ((ant_location - 1) % 20 == 0)) {
+                else if ((breed_location % GRID_DIMENSION != 0) && ((ant_location - 1) % GRID_DIMENSION == 0)) {
                     world[breed_location].set_type(ANTS);
                     ants.push_back(Ant());
                     ants[ants.size() - 1].set_ant_location(breed_location);
                     breed = true;
                 } 
-                else if (ant_location % 20 != 0) {
+                else if (ant_location % GRID_DIMENSION != 0) {
                     world[breed_location].set_type(ANTS);
                     ants.push_back(Ant());
                     ants[ants.size() - 1].set_ant_location(breed_location);
@@ -392,7 +398,7 @@ void Doodlebug::move(vector<Organism> &world, vector<Ant> &ants) {
     //if ants are next to doodlebug, randomly move to ant location and eat it
     //set previous location to empty space
     //if no ants, randomly move to empty space adjacent to doodlebug
-    vector<int> directions = {-1, 1, -20, 20};
+    vector<int> directions = {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN};
     int move_direction = 0;
     bool move = false;
     int new_doodlebug_location = doodlebug_location + directions[rand() % 4];
@@ -401,7 +407,7 @@ void Doodlebug::move(vector<Organism> &world, vector<Ant> &ants) {
     for(int i = 0; i < directions.size(); i++) {
         int food_doodlebug_location = doodlebug_location + directions[rand() % 4];
         if(world[food_doodlebug_location].get_type() == ANTS && (food_doodlebug_location >= 1 && food_doodlebug_location <= 400)) {
-            if((doodlebug_location % 20 == 0) && food_doodlebug_location % 20 != 1) {
+            if((doodlebug_location % GRID_DIMENSION == 0) && food_doodlebug_location % GRID_DIMENSION != 1) {
                 world[doodlebug_location].set_type(EMPTY_SPACE);
                 doodlebug_location = food_doodlebug_location;
                 world[doodlebug_location].set_type(DOODLEBUGS);
@@ -416,7 +422,7 @@ void Doodlebug::move(vector<Organism> &world, vector<Ant> &ants) {
                 move = true;
                 break;
             }
-            else if(((doodlebug_location - 1) % 20 == 0) && food_doodlebug_location % 20 != 0) {
+            else if(((doodlebug_location - 1) % GRID_DIMENSION == 0) && food_doodlebug_location % GRID_DIMENSION != 0) {
                 world[doodlebug_location].set_type(EMPTY_SPACE);
                 doodlebug_location = food_doodlebug_location;
                 world[doodlebug_location].set_type(DOODLEBUGS);
@@ -431,7 +437,7 @@ void Doodlebug::move(vector<Organism> &world, vector<Ant> &ants) {
                 move = true;
                 break;
             }
-            else if (doodlebug_location % 20 != 0) {
+            else if (doodlebug_location % GRID_DIMENSION != 0) {
                 world[doodlebug_location].set_type(EMPTY_SPACE);
                 doodlebug_location = food_doodlebug_location;
                 world[doodlebug_location].set_type(DOODLEBUGS);
@@ -452,17 +458,17 @@ void Doodlebug::move(vector<Organism> &world, vector<Ant> &ants) {
 
     if(world[new_doodlebug_location].get_type() == EMPTY_SPACE && (new_doodlebug_location >= 1 && new_doodlebug_location <= 400) && move == false) {
         starve_count++;
-        if(doodlebug_location % 20 == 0 && new_doodlebug_location % 20 != 1) {
+        if(doodlebug_location % GRID_DIMENSION == 0 && new_doodlebug_location % GRID_DIMENSION != 1) {
             world[doodlebug_location].set_type(EMPTY_SPACE);
             doodlebug_location = new_doodlebug_location;
             world[doodlebug_location].set_type(DOODLEBUGS);
         }
-        else if((doodlebug_location - 1 % 20) == 0 && new_doodlebug_location != 0) {
+        else if((doodlebug_location - 1 % GRID_DIMENSION) == 0 && new_doodlebug_location != 0) {
             world[doodlebug_location].set_type(EMPTY_SPACE);
             doodlebug_location = new_doodlebug_location;
             world[doodlebug_location].set_type(DOODLEBUGS);
         }
-        else if (doodlebug_location % 20 != 0) {
+        else if (doodlebug_location % GRID_DIMENSION != 0) {
             world[doodlebug_location].set_type(EMPTY_SPACE);
             doodlebug_location = new_doodlebug_location;
             world[doodlebug_location].set_type(DOODLEBUGS);
@@ -472,7 +478,7 @@ void Doodlebug::move(vector<Organism> &world, vector<Ant> &ants) {
 
 void Doodlebug::breed(vector<Organism> &world, vector<Doodlebug> &doodlebugs, int time_step) {
     //if time step 8
-     vector<int> directions = {-1, 1, -20, 20}; // left right down up
+  vector<int> directions = {MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN}; // left right down up
 
     if (time_step % 8 == 0 && get_age() >= 8) {
         bool breed = false;
@@ -481,19 +487,19 @@ void Doodlebug::breed(vector<Organism> &world, vector<Doodlebug> &doodlebugs, in
 
         while (breed == false) {
             if (world[breed_location].get_type() == EMPTY_SPACE && (breed_location >= 1 && breed_location <= 400)) {
-                if (breed_location % 20 != 1 && (doodlebug_location % 20 == 0)) {
+                if (breed_location % GRID_DIMENSION != 1 && (doodlebug_location % GRID_DIMENSION == 0)) {
                     world[breed_location].set_type(DOODLEBUGS);
                     doodlebugs.push_back(Doodlebug());
                     doodlebugs[doodlebugs.size() - 1].set_doodlebug_location(breed_location);
                     breed = true;
                 } 
-                else if (breed_location % 20 != 0 && ((doodlebug_location - 1) % 20 == 0)) {
+                else if (breed_location % GRID_DIMENSION != 0 && ((doodlebug_location - 1) % GRID_DIMENSION == 0)) {
                     world[breed_location].set_type(DOODLEBUGS);
                     doodlebugs.push_back(Doodlebug());
                     doodlebugs[doodlebugs.size() - 1].set_doodlebug_location(breed_location);
                     breed = true;
                 } 
-                else if (doodlebug_location % 20 != 0) {
+                else if (doodlebug_location % GRID_DIMENSION != 0) {
                     world[breed_location].set_type(DOODLEBUGS);
                     doodlebugs.push_back(Doodlebug());
                     doodlebugs[doodlebugs.size() - 1].set_doodlebug_location(breed_location);
@@ -503,7 +509,6 @@ void Doodlebug::breed(vector<Organism> &world, vector<Doodlebug> &doodlebugs, in
             else if (breed == false && breed_direction == 3) {
                 breed = true;
             }
-
             breed_direction++;
         }
     }
