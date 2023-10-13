@@ -98,7 +98,7 @@ int main() {
     World world;
     world.initialize_world();
     
-    int maxTimeSteps = 1000; // Set the maximum number of time steps here
+    int maxTimeSteps = 1000000; // Set the maximum number of time steps here
 
     for (int currentStep = 1; currentStep <= maxTimeSteps; currentStep++) {
         world.move_doodlebugs();
@@ -112,7 +112,7 @@ int main() {
         world.set_time_step(world.get_time_step() + 1);
 
         // Add a delay to control the simulation speed (optional)
-        std::this_thread::sleep_for(std::chrono::milliseconds(300)); // Adjust the delay duration as needed
+        std::this_thread::sleep_for(std::chrono::milliseconds(3)); // Adjust the delay duration as needed
     }
 
     return 0;
