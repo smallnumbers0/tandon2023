@@ -44,16 +44,21 @@ class FriendsList {
             } 
         }
         void display() {
-        Friend *current = head;
-        while (current != nullptr) {
-            cout <<current->full_name<<" "<< current->amount_paid<< endl;
-            current = current->next;
+            Friend *current = head;
+            while (current != nullptr) {
+                cout <<current->full_name<<" "<< current->amount_paid<< endl;
+                current = current->next;
+            }
         }
-    }
 
 };
 
+
+
 int main() {
+    double total = 0;
+    double average;
+    int num_friends = 0;
     string file_name;
     cout<<"Please enter file name: "<<endl;
     cin>>file_name;
@@ -71,6 +76,8 @@ int main() {
         string full_name;
         double amount_paid;
         input_file>>amount_paid;
+        total += amount_paid;
+        num_friends++;
         input_file.ignore(9999, ' ');
         getline(input_file, full_name);
         friends.insert(full_name, amount_paid);
@@ -78,9 +85,73 @@ int main() {
     }
     
     input_file.close();
+
     friends.display();
+    average = total / num_friends;
+
+    Friend* current;
+    current = friends.head;
+    while (current != nullptr) {
+        current->amount_owed = current->amount_paid - average;
+        if(current->amount_owed == 0) {
+            cout<<current->full_name<<" is all set."<<endl;
+        }
+        current = current->next;
+    }
+
+    current = friends.head;
+    while (current != nullptr) {
+        if (current->amount_owed > 0) {
+            Friend* recipient = friends.head;
+
+            while (recipient != nullptr) {
+                if (recipient->amount_owed < 0) {
+                    double transfer_amount = min(current->amount_owed, -recipient->amount_owed);
+
+                    recipient->amount_owed += transfer_amount;
+                    current->amount_owed -= transfer_amount;
+
+                    cout << current->full_name << " gets $" << transfer_amount << " from " << recipient->full_name << endl;
+
+                    if (current->amount_owed <= 0) {
+                        break;  
+                    }
+                }
+
+                recipient = recipient->next;
+            }
+        }
+        current = current->next;
+    }
+
+    cout<<"Everyone should have spent $"<<average<<endl;
+
+
+    // temp = friends.head;
+    // current = friends.head;
+    // //
+    // while (current != nullptr) {
+    //     current->amount_owed = current->amount_paid - average; 
+    //     if (current->amount_owed > 0) {
+    //         while(temp != nullptr) {
+    //             if(temp->amount_owed < 0) {
+    //                 double transfer_amount = current->amount_owed;
+    //                 transfer_amount = transfer_amount - temp->amount_owed; 
+    //                 temp->amount_owed = temp->amount_owed + transfer_amount;
+    //                 cout<<temp->full_name<<" pays "<<current->full_name<<" "<<-transfer_amount<<endl;
+    //             }
+    //             temp = temp->next;
+    //         }
+    //     }
+    //     current = current->next;
+    // }
+
+    current = friends.head;
+    while (current != nullptr) {
+        Friend* next = current->next;
+        delete current;
+        current = next;
+    }
 
     return 0;
 }
-
-
