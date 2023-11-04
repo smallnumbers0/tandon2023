@@ -7,8 +7,8 @@ template <class T>
 
 class Queue {
     private:
-        int frontptr = 0;
-        int backptr = 0;
+        int frontptr = 0; 
+        int backptr = 0; //keeps track of size by pointing at the end
         vector<T> v;
 
     public:
@@ -21,7 +21,7 @@ class Queue {
         T queue = v[frontptr++];
         backptr--;
 
-        if(empty()) {
+        if(backptr == 0) {
             reset();
         }
 
@@ -36,15 +36,12 @@ class Queue {
         return backptr;
     }
 
-    bool empty() {
-        return backptr == 0;
-    }
-
     void reset() {
         v.clear();
         frontptr = 0;
         backptr = 0;
     }
+
 };
 
 int main() {
@@ -78,6 +75,7 @@ int main() {
 
     v.dequeue();
     v.dequeue();
+    
     cout<<"size of v: "<<v.size()<<endl;
 }
 
