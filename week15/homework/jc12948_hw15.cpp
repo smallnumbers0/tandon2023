@@ -1,11 +1,10 @@
-//Homework 10: Linked Lists & File Reading
+//Homework 15: Linked Lists & File Reading
 
 #include <iostream>
 #include <fstream>
 #include <string>
 
 using namespace std;
-
 
 struct Friend {
     string full_name;
@@ -19,12 +18,13 @@ struct Friend {
         amount_owed = 0;
         next = nullptr;
     }
-};
 
+    ~Friend() {}
+};
+//
 class FriendsList {
     public:
         Friend *head; //head ptr
-
         FriendsList() {
            head = nullptr;
         }
@@ -43,14 +43,13 @@ class FriendsList {
                 current->next = new_friend;
             } 
         }
-        void display() {
+        void display() { //test to see if linked list is linking properly
             Friend *current = head;
             while (current != nullptr) {
                 cout <<current->full_name<<" "<< current->amount_paid<< endl;
                 current = current->next;
             }
         }
-
 };
 
 
@@ -85,7 +84,6 @@ int main() {
     }
     
     input_file.close();
-
     friends.display();
     average = total / num_friends;
 
@@ -102,23 +100,24 @@ int main() {
     current = friends.head;
     while (current != nullptr) {
         if (current->amount_owed > 0) {
-            Friend* recipient = friends.head;
-
-            while (recipient != nullptr) {
-                if (recipient->amount_owed < 0) {
-                    double transfer_amount = min(current->amount_owed, -recipient->amount_owed);
-
-                    recipient->amount_owed += transfer_amount;
+            Friend* temp = friends.head; //pointing to friends who should get money owed
+            while (temp != nullptr) {
+                if (temp->amount_owed < 0) {
+                    double transfer_amount;
+                    if (current->amount_owed < -temp->amount_owed) {
+                        transfer_amount = current->amount_owed;
+                    } else {
+                        transfer_amount = -temp->amount_owed;
+                    }
+                    temp->amount_owed += transfer_amount;
                     current->amount_owed -= transfer_amount;
-
-                    cout << current->full_name << " gets $" << transfer_amount << " from " << recipient->full_name << endl;
-
+                    cout << current->full_name << " gets $" << transfer_amount << " from " << temp->full_name << endl;
                     if (current->amount_owed <= 0) {
                         break;  
                     }
                 }
 
-                recipient = recipient->next;
+                temp = temp->next;
             }
         }
         current = current->next;
@@ -126,32 +125,14 @@ int main() {
 
     cout<<"Everyone should have spent $"<<average<<endl;
 
-
-    // temp = friends.head;
-    // current = friends.head;
-    // //
-    // while (current != nullptr) {
-    //     current->amount_owed = current->amount_paid - average; 
-    //     if (current->amount_owed > 0) {
-    //         while(temp != nullptr) {
-    //             if(temp->amount_owed < 0) {
-    //                 double transfer_amount = current->amount_owed;
-    //                 transfer_amount = transfer_amount - temp->amount_owed; 
-    //                 temp->amount_owed = temp->amount_owed + transfer_amount;
-    //                 cout<<temp->full_name<<" pays "<<current->full_name<<" "<<-transfer_amount<<endl;
-    //             }
-    //             temp = temp->next;
-    //         }
-    //     }
-    //     current = current->next;
-    // }
-
     current = friends.head;
     while (current != nullptr) {
         Friend* next = current->next;
         delete current;
         current = next;
     }
+
+    // delete current;
 
     return 0;
 }

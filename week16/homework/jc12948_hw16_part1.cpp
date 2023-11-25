@@ -23,6 +23,11 @@ int main() {
     if(!check_begin_end_pair(input_file)) {
         exit(1);
     }
+
+    //resetting input_file 
+    //because the symbol_balanced would be checking an empty file
+    //since checkcing for begin and end already used it 
+    //Is there an easier way to do this?
     input_file.clear();                 
     input_file.seekg(0, ios::beg);
 

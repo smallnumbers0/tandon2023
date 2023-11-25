@@ -42,6 +42,12 @@ class Queue {
         backptr = 0;
     }
 
+    void print() {
+        for(int i = 0; i < v.size(); i++) {
+            cout<<v[i]<<endl;
+        }
+    }
+
 };
 
 int main() {
@@ -75,7 +81,9 @@ int main() {
 
     v.dequeue();
     v.dequeue();
-    
+
     cout<<"size of v: "<<v.size()<<endl;
+
+    v.print();
 }
 

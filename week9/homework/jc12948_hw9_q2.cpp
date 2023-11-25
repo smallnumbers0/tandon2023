@@ -44,7 +44,7 @@ bool isAnagram(string str1, string str2) {
     for(int i = 0; i < 26; i++) {
         alphabet[i] = 'a' + (char)i; //store letters
         lettersOne[i] = 0; //initalize counters
-        lettersTwo[i] = 0;
+        lettersTwo[i] = 0; 
     }
 
     for(int i = 0; i < str1.length(); i++) {

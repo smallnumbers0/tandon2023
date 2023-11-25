@@ -39,21 +39,7 @@ public:
     Check(int number, long dollars, int cents, bool cashed);
     Check(int number, long dollars, bool cashed);
     Check();
-    friend istream& operator>>(istream& input, Check& check) { //Check boolean for 1 or 0 only
-        int is_cashed;
-        input >> check.number >> check.amount >> is_cashed;
-        if(is_cashed == 1) {
-            check.is_cashed = true;
-        }
-        else if(is_cashed == 0) {
-            check.is_cashed = false;
-        }
-        else {
-            cout<<"Error. Could not determine if check is to be cashed. Entered something other than 1 or 0."<<endl;
-            exit(1);
-        }
-        return input;
-    }
+    friend istream& operator>>(istream& input, Check& check);
     friend istream& operator >>(istream& ins, Check& check);
     friend ostream& operator <<(ostream& outs, const Check& check);
     
@@ -88,7 +74,6 @@ int main() {
         cin >> deposits[i];
     }
 
-    //total depsotis
     Money new_balance;
     Money new_bank_balance;
     Money total_deposit;
@@ -101,7 +86,7 @@ int main() {
     Money balance_difference;
     cout<<"Please enter previous balance ($00.00): "<<endl;
     cin>>previous_balance;
-    //Instructions feel unclear. Why are we asking user for a new balance and then calculating a new balance? I never balanced a checkbook before.
+    //Instructions feel unclear. Why are we asking user for a previous balance and a new balance. Then calculating a new balance? I never balanced a checkbook before.
     // cout<<"Please enter new balance according to the user: "<<endl;
     // cin>>new_balance;
     amount_cashed_checks = get_amount_cashed_checks(checks, num_checks);
@@ -110,7 +95,7 @@ int main() {
     new_balance = previous_balance - amount_cashed_checks + amount_uncashed_checks + total_deposit; //The new account balance should be the old balance plus all deposits,minus all checks that have been cashed.
     new_bank_balance = previous_balance - amount_cashed_checks + total_deposit;
     balance_difference = new_balance - new_bank_balance;
-    //To keep the difference positive
+    //To keep the difference positive for output
     if(balance_difference < 0) {
         balance_difference = -balance_difference;
     }
@@ -283,6 +268,21 @@ Money get_total_deposit(const Money deposits[], int num_deposits) {
     return amount;
 }
 
+istream& operator>>(istream& input, Check& check) { //Check boolean for 1 or 0 only
+        int is_cashed;
+        input >> check.number >> check.amount >> is_cashed;
+        if(is_cashed == 1) {
+            check.is_cashed = true;
+        }
+        else if(is_cashed == 0) {
+            check.is_cashed = false;
+        }
+        else {
+            cout<<"Error. Could not determine if check is to be cashed. Entered something other than 1 or 0."<<endl;
+            exit(1);
+        }
+        return input;
+    }
 
 ostream& operator<<(ostream& outs, const Check& check) {
     outs << "Check Number: " << check.get_number() << ", Amount: " << check.get_amount();

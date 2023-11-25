@@ -84,7 +84,6 @@ public:
     int get_ant_location() const;
     void set_ant_location(int new_location);
     
-
     Ant(){type = ANTS;};
 };
 
@@ -99,7 +98,6 @@ public:
     int get_starve_count(); 
     int get_doodlebug_location() const;
     void set_doodlebug_location(int new_location);
-
 
     Doodlebug(){type = DOODLEBUGS;};
 };

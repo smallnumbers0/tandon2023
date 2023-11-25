@@ -1,0 +1,7 @@
+3	Danny
+2	Jane
+4	Daniel
+1	Betty
+14	Bee
+32	John
+18	Beek
