@@ -1,4 +1,5 @@
 Week 12
+
 Agenda
 This week we will be studying object oriented programming including the design of classes, constructors, destructors, copy constructors, operator overloading (including the assignment operator), inheritance and polymorphism. 
 
